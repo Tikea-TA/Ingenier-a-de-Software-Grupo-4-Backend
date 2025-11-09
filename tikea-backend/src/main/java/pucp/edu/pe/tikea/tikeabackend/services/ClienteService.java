@@ -3,6 +3,7 @@ package pucp.edu.pe.tikea.tikeabackend.services;
 import jakarta.transaction.Transactional;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import pucp.edu.pe.tikea.tikeabackend.DTO.ClienteModficiacionRequest;
 import pucp.edu.pe.tikea.tikeabackend.DTO.ClienteResponse;
 import pucp.edu.pe.tikea.tikeabackend.DTO.LoginRequest;
 import pucp.edu.pe.tikea.tikeabackend.DTO.RegistroClienteRequest;
@@ -56,6 +57,46 @@ public class ClienteService {
             }
             c.setFechaUltimoAcceso(LocalDateTime.now());
             return toDTO(clienteRepository.save(c));
+    }
+    //Modificar
+    // service/ClienteService.java
+    @Transactional
+    public ClienteResponse actualizar(Integer id, ClienteModficiacionRequest dto) {
+        Cliente c = clienteRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Cliente no encontrado: " + id));
+
+        // --- Usuario
+        if (dto.getCorreo() != null) c.setCorreo(dto.getCorreo());
+        if (dto.getTelefono() != null) c.setTelefono(dto.getTelefono());
+        if (dto.getNombreUser() != null) c.setNombreUser(dto.getNombreUser());
+
+        if (dto.getPassword() != null && !dto.getPassword().isBlank()) {
+            c.setPassword(encoder.encode(dto.getPassword()));
+            c.setRequiereCambioPassword(false); // o true, según lógica
+        }
+
+        // --- Cliente
+        if (dto.getDireccion() != null) c.setDireccion(dto.getDireccion());
+        if (dto.getPuntosPromociones() != null) c.setPuntos_promociones(dto.getPuntosPromociones());
+        if (dto.getTipoCliente() != null) {
+            c.setTipoCliente(TipoCliente.valueOf(dto.getTipoCliente().toUpperCase()));
+        }
+
+        c.setFechaUltimaModificacion(LocalDateTime.now());
+
+        return toDTO(clienteRepository.save(c));
+    }
+
+    //Eliminar cliente
+    @Transactional
+    public ClienteResponse inactivar(Integer id) {
+        Cliente c = clienteRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Cliente no encontrado: " + id));
+
+        c.setEstado(TipoEstado.INACTIVO);
+        c.setFechaUltimaModificacion(LocalDateTime.now());
+
+        return toDTO(clienteRepository.save(c));
     }
 
     private ClienteResponse toDTO(Cliente c) {
