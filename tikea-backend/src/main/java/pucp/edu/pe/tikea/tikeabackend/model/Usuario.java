@@ -18,8 +18,10 @@ import java.time.LocalDateTime;
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name ="idUsuario")
     private int id;
     private String nombre;
+    @Column(name = "apellidos")
     private String apellido;
     private String correo;
     private String telefono;
