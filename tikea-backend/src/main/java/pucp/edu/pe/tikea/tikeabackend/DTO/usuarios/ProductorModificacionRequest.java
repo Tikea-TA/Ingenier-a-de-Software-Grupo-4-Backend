@@ -10,21 +10,16 @@ import pucp.edu.pe.tikea.tikeabackend.model.usuarios.TipoEstadoProductor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProductorModificacionRequest {
-    //Datos heredados de Usuario
-    private String nombre;
-    private String apellido;
+    // Datos que se pueden modificar de Usuario
     private String correo;
     private String telefono;
-    private TipoEstado tipoEstadoUsuario;
-    private String DNI;
+    private String nombreUsuario;
+    private String password;
 
-    //Datos del propio Productor
-    private int idGestor;
+    // Datos del Productor que se pueden modificar
     private String razonSocial;
     private String RUC;
     private String direccionFisica;
-
     private TipoEstadoProductor tipoEstadoProductor;
-
     private byte[] documentacionFisica;
 }

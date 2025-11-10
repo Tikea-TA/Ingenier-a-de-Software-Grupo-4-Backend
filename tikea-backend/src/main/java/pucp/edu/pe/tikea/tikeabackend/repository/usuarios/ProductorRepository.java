@@ -11,29 +11,41 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface ProductorRepository {
-    //Buscar Productor por ID
+public interface ProductorRepository extends JpaRepository<Productor, Integer> {
+    // Buscar Productor por ID
     Optional<Productor> findByIdProductor(@Param("idProductor") Integer id);
-    //Buscar Productor por RazonSocial
+
+    // Buscar Productor por RazonSocial
     Optional<Productor> findByRazonSocialIgnoreCase(String razonSocial);
-    //Buscar Productor por RUC
+
+    // Buscar Productor por RUC
     Optional<Productor> findByRUC(String RUC);
-    //Buscar Productor por Estado Productor
-    Optional<Productor> findByEstadoProductor(TipoEstadoProductor tipoEstadoProductor);
-    //Buscar Productor por nombre de usuario
-    Optional<Productor> findByNombreUsuarioIgnoreCase(String nombreUsuario);
-    //Buscar Productor por nombre
+
+    // Buscar Productor por Estado Productor
+    List<Productor> findByTipoEstadoProductor(TipoEstadoProductor tipoEstadoProductor);
+
+    // Buscar Productor por nombre de usuario
+    Optional<Productor> findByNombreUserIgnoreCase(String nombreUsuario);
+
+    // Buscar Productor por nombre
     Optional<Productor> findByNombreIgnoreCase(String nombre);
-    //Buscar Productor por apellidos
-    Optional<Productor> findByApellidosIgnoreCase(String apellidos);
-    //Buscar por DNI
+
+    // Buscar Productor por apellidos
+    Optional<Productor> findByApellidoIgnoreCase(String apellido);
+
+    // Buscar por DNI
     Optional<Productor> findByDNI(String DNI);
 
-    //Buscar todos los Productores de un Gestor especifico
+    // Buscar por correo
+    Optional<Productor> findByCorreoIgnoreCase(String correo);
+
+    // Buscar todos los Productores de un Gestor especifico
     List<Productor> findByGestor(Gestor gestor);
-    //Buscar todos los Productores activos
+
+    // Buscar todos los Productores activos
     List<Productor> findByEstadoAndGestorIsNotNull(String estado);
 
+    // Contar Productores por Gestor
     long countByGestor(Gestor gestor);
 
     // Buscar Productores registrados de un Gestor específico

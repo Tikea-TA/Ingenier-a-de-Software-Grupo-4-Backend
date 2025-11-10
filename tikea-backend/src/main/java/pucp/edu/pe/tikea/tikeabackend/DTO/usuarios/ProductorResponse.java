@@ -12,8 +12,8 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProductorResponse {
-    //Datos heredados de Usuario
-    private Integer idUsuario;
+    // Datos heredados de Usuario
+    private Integer idProductor;
     private String nombre;
     private String apellido;
     private String correo;
@@ -22,12 +22,12 @@ public class ProductorResponse {
     private String DNI;
     private TipoEstado estado;
 
-    //Datos del Productor
-    private Integer idProductor;
+    // Datos del Productor
     private GestorResponse gestor;
     private String razonSocial;
+    private String RUC;
     private String direccionFisica;
-    private TipoEstadoProductor estadoProductor;
+    private TipoEstadoProductor tipoEstadoProductor;
     private int localesRegistrados;
     private int eventosRegistrados;
     private int promocionesCreadas;

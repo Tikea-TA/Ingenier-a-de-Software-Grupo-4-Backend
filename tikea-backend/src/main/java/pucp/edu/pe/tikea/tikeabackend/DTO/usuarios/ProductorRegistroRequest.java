@@ -13,33 +13,42 @@ import pucp.edu.pe.tikea.tikeabackend.model.usuarios.TipoEstadoProductor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProductorRegistroRequest {
-    //Datos hereados de Usuario
-    @NotBlank
+    // Datos heredados de Usuario
+    @NotBlank(message = "El nombre es requerido")
     private String nombre;
-    @NotBlank
+
+    @NotBlank(message = "El apellido es requerido")
     private String apellido;
-    @Email
-    @NotBlank
+
+    @Email(message = "El email debe ser válido")
+    @NotBlank(message = "El email es requerido")
     private String email;
-    @NotBlank
+
+    @NotBlank(message = "El teléfono es requerido")
     private String telefono;
-    @NotBlank
+
+    @NotBlank(message = "El nombre de usuario es requerido")
     private String nombreUsuario;
-    @NotBlank
+
+    @NotBlank(message = "La contraseña es requerida")
     private String password;
-    @NotBlank
+
+    @NotBlank(message = "El DNI es requerido")
     private String DNI;
 
-    //Datos de Productor
-    @NotBlank
-    private int idGestor;
-    @NotBlank
+    // Datos de Productor
+    @NotBlank(message = "El ID del Gestor es requerido")
+    private Integer idGestor;
+
+    @NotBlank(message = "La razón social es requerida")
     private String razonSocial;
-    @NotBlank
+
+    @NotBlank(message = "El RUC es requerido")
     private String RUC;
-    @NotBlank
+
+    @NotBlank(message = "La dirección física es requerida")
     private String direccionFisica;
-    @NotBlank
+
     @Builder.Default
     private TipoEstadoProductor tipoEstadoProductor = TipoEstadoProductor.PENDIENTE_VALIDACION;
 

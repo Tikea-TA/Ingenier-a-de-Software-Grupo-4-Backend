@@ -20,17 +20,34 @@ public class Productor extends Usuario {
     @ManyToOne
     @JoinColumn(name = "idGestor")
     private Gestor gestor;
+
+    @Column(name = "razonSocial")
     private String razonSocial;
+
+    @Column(name = "RUC")
     private String RUC;
+
+    @Column(name = "direccionFisica")
     private String direccionFisica;
-    @Column(name = "TipoEstadoProductor")
-    private TipoEstadoProductor estadoProductor;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "tipoEstadoProductor")
+    private TipoEstadoProductor tipoEstadoProductor;
+
     @Column(name = "documentacionAdjunta")
     @Lob
     private byte[] documentacionFisica;
+
+    @Column(name = "localesRegistrados")
     private int localesRegistrados;
+
+    @Column(name = "eventosRegistrados")
     private int eventosRegistrados;
+
+    @Column(name = "promocionesCreadas")
     private int promocionesCreadas;
+
     @CreationTimestamp
+    @Column(name = "fechaVerificacion")
     private LocalDateTime fechaVerificacion;
 }
