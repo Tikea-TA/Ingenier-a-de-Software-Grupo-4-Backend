@@ -126,7 +126,7 @@ public class ProductorService {
         // Validar que el correo no esté usado por otro Productor
         if (request.getCorreo() != null) {
             Optional<Productor> productorConCorreo = productorRepository.findByCorreoIgnoreCase(request.getCorreo());
-            if (productorConCorreo.isPresent() && !productorConCorreo.get().getId().equals(idProductor)) {
+            if (productorConCorreo.isPresent() && !productorConCorreo.get().getIdUsuario().equals(idProductor)) {
                 throw new RuntimeException("El correo ya está registrado por otro productor");
             }
             productor.setCorreo(request.getCorreo());
@@ -181,7 +181,7 @@ public class ProductorService {
      */
     private ProductorResponse convertirAResponseDTO(Productor productor) {
         ProductorResponse dto = new ProductorResponse();
-        dto.setIdProductor(productor.getId());
+        dto.setIdProductor(productor.getIdUsuario());
         dto.setNombre(productor.getNombre());
         dto.setApellido(productor.getApellido());
         dto.setCorreo(productor.getCorreo());
@@ -201,7 +201,7 @@ public class ProductorService {
         // Convertir Gestor a GestorResponse
         if (productor.getGestor() != null) {
             GestorResponse gestorDTO = new GestorResponse();
-            gestorDTO.setId(productor.getGestor().getId());
+            gestorDTO.setIdUsuario(productor.getGestor().getIdUsuario());
             gestorDTO.setNombre(productor.getGestor().getNombre());
             gestorDTO.setApellido(productor.getGestor().getApellido());
             gestorDTO.setCorreo(productor.getGestor().getCorreo());
@@ -209,7 +209,7 @@ public class ProductorService {
             gestorDTO.setNombreUser(productor.getGestor().getNombreUser());
             gestorDTO.setDni(productor.getGestor().getDNI());
             gestorDTO.setEstado(productor.getGestor().getEstado());
-            gestorDTO.setTipoArea(productor.getGestor().getTipoArea());
+            gestorDTO.setAreaGestion(productor.getGestor().getTipoArea());
             dto.setGestor(gestorDTO);
         }
 

@@ -19,7 +19,7 @@ public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name ="idUsuario")
-    private int id;
+    private Integer idUsuario;
     private String nombre;
     @Column(name = "apellidos")
     private String apellido;
@@ -32,6 +32,7 @@ public class Usuario {
     @Column(name = "dni")
     private String DNI;
     @Column(name = "fecha_registro")
+    @CreationTimestamp
     private LocalDateTime fechaRegistro;
     @Column(name = "fecha_ultima_modificacion")
     private LocalDateTime fechaUltimaModificacion;

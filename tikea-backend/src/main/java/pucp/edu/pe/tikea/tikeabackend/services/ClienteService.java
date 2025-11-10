@@ -101,7 +101,7 @@ public class ClienteService {
 
     private ClienteResponse toDTO(Cliente c) {
         ClienteResponse dto = new ClienteResponse();
-        dto.setIdCliente(c.getId());
+        dto.setIdCliente(c.getIdUsuario());
         dto.setNombre(c.getNombre());
         dto.setDni(c.getApellido());
         dto.setCorreo(c.getCorreo());
