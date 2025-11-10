@@ -11,11 +11,13 @@ import pucp.edu.pe.tikea.tikeabackend.model.Cliente;
 import pucp.edu.pe.tikea.tikeabackend.model.TipoCliente;
 import pucp.edu.pe.tikea.tikeabackend.model.TipoEstado;
 import pucp.edu.pe.tikea.tikeabackend.repository.ClienteRepository;
+import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
+@Transactional
 public class ClienteService {
 
     private final ClienteRepository clienteRepository;
@@ -34,7 +36,7 @@ public class ClienteService {
     public ClienteResponse registrar(RegistroClienteRequest dto) {
         Cliente c = new Cliente();
         c.setNombre(dto.getNombre());
-        c.setApellido(dto.getApellido());
+        c.setApellido(dto.getApellidos());
         c.setCorreo(dto.getCorreo());
         c.setTelefono(dto.getTelefono());
         c.setNombreUser(dto.getNombreUser());
@@ -43,7 +45,7 @@ public class ClienteService {
         c.setEstado(TipoEstado.ACTIVO);
         c.setFechaRegistro(LocalDateTime.now());
         c.setDireccion(dto.getDireccion());
-        c.setPuntos_promociones(dto.getPuntosPromociones() == null ? 0 : dto.getPuntosPromociones());
+        c.setPuntosPromocionales(dto.getPuntosPromociones() == null ? 0 : dto.getPuntosPromociones());
         c.setTipoCliente(TipoCliente.valueOf(dto.getTipoCliente().toUpperCase()));
 
         return toDTO(clienteRepository.save(c));
@@ -77,7 +79,7 @@ public class ClienteService {
 
         // --- Cliente
         if (dto.getDireccion() != null) c.setDireccion(dto.getDireccion());
-        if (dto.getPuntosPromociones() != null) c.setPuntos_promociones(dto.getPuntosPromociones());
+        if (dto.getPuntosPromocionales() != null) c.setPuntosPromocionales(dto.getPuntosPromocionales());
         if (dto.getTipoCliente() != null) {
             c.setTipoCliente(TipoCliente.valueOf(dto.getTipoCliente().toUpperCase()));
         }
@@ -103,14 +105,14 @@ public class ClienteService {
         ClienteResponse dto = new ClienteResponse();
         dto.setIdCliente(c.getIdUsuario());
         dto.setNombre(c.getNombre());
-        dto.setDni(c.getApellido());
+        dto.setDNI(c.getApellido());
         dto.setCorreo(c.getCorreo());
         dto.setTelefono(c.getTelefono());
-        dto.setNombreUser(c.getNombreUser());
-        dto.setDni(c.getDNI());
+        dto.setNombreUsuario(c.getNombreUser());
+        dto.setDNI(c.getDNI());
         dto.setEstado(c.getEstado());
         dto.setDireccion(c.getDireccion());
-        dto.setPuntosPromociones(c.getPuntos_promociones());
+        dto.setPuntosPromociones(c.getPuntosPromocionales());
         dto.setTipoCliente(c.getTipoCliente());
         return dto;
     }

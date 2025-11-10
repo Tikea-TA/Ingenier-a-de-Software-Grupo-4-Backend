@@ -15,8 +15,16 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 public class Cliente extends Usuario {
+
     private String direccion;
-    private int puntos_promociones;
-    @Column(name = "tipo_cliente")
+
+    @Column(name = "puntosPromocionales")
+    private int puntosPromocionales;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "tipoCliente")
     private TipoCliente tipoCliente;
+
+    @Column(name = "activo")
+    private Integer activo;
 }
