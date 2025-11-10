@@ -32,7 +32,7 @@ public class ProductorService {
      */
     public ProductorResponse registrarProductor(ProductorRegistroRequest productorRegistroRequest) {
         // Validar que el Gestor existe
-        Gestor gestor = gestorRepository.findGestorById(productorRegistroRequest.getIdGestor())
+        Gestor gestor = gestorRepository.findById(productorRegistroRequest.getIdGestor())
                 .orElseThrow(() -> new RuntimeException("Gestor no encontrado con ID: " + productorRegistroRequest.getIdGestor()));
 
         // Validar que el correo no esté registrado
@@ -76,7 +76,7 @@ public class ProductorService {
      * Obtiene un Productor por ID
      */
     public ProductorResponse obtenerProductor(Integer idProductor) {
-        Productor productor = productorRepository.findByIdProductor(idProductor)
+        Productor productor = productorRepository.findById(idProductor)
                 .orElseThrow(() -> new RuntimeException("Productor no encontrado con ID: " + idProductor));
 
         return convertirAResponseDTO(productor);
@@ -96,7 +96,7 @@ public class ProductorService {
      * Obtiene todos los Productores de un Gestor específico
      */
     public List<ProductorResponse> obtenerProductoresPorGestor(Integer idGestor) {
-        Gestor gestor = gestorRepository.findGestorById(idGestor)
+        Gestor gestor = gestorRepository.findById(idGestor)
                 .orElseThrow(() -> new RuntimeException("Gestor no encontrado con ID: " + idGestor));
 
         return productorRepository.findByGestor(gestor)
@@ -120,7 +120,7 @@ public class ProductorService {
      * Actualiza los datos de un Productor
      */
     public ProductorResponse actualizarProductor(Integer idProductor, ProductorModificacionRequest request) {
-        Productor productor = productorRepository.findByIdProductor(idProductor)
+        Productor productor = productorRepository.findById(idProductor)
                 .orElseThrow(() -> new RuntimeException("Productor no encontrado con ID: " + idProductor));
 
         // Validar que el correo no esté usado por otro Productor
@@ -169,7 +169,7 @@ public class ProductorService {
      * Elimina un Productor
      */
     public void eliminarProductor(Integer idProductor) {
-        Productor productor = productorRepository.findByIdProductor(idProductor)
+        Productor productor = productorRepository.findById(idProductor)
                 .orElseThrow(() -> new RuntimeException("Productor no encontrado con ID: " + idProductor));
 
         productorRepository.delete(productor);

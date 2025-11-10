@@ -12,8 +12,6 @@ import java.util.Optional;
 
 @Repository
 public interface ProductorRepository extends JpaRepository<Productor, Integer> {
-    // Buscar Productor por ID
-    Optional<Productor> findByIdProductor(@Param("idProductor") Integer id);
 
     // Buscar Productor por RazonSocial
     Optional<Productor> findByRazonSocialIgnoreCase(String razonSocial);
@@ -41,9 +39,6 @@ public interface ProductorRepository extends JpaRepository<Productor, Integer> {
 
     // Buscar todos los Productores de un Gestor especifico
     List<Productor> findByGestor(Gestor gestor);
-
-    // Buscar todos los Productores activos
-    List<Productor> findByEstadoAndGestorIsNotNull(String estado);
 
     // Contar Productores por Gestor
     long countByGestor(Gestor gestor);

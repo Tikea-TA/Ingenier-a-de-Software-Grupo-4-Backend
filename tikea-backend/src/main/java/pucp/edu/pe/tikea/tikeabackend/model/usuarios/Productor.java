@@ -17,6 +17,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 public class Productor extends Usuario {
+
     @ManyToOne
     @JoinColumn(name = "idGestor")
     private Gestor gestor;
@@ -31,7 +32,7 @@ public class Productor extends Usuario {
     private String direccionFisica;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "tipoEstadoProductor")
+    @Column(name = "estadoProductor")
     private TipoEstadoProductor tipoEstadoProductor;
 
     @Column(name = "documentacionAdjunta")
