@@ -2,9 +2,9 @@ package pucp.edu.pe.tikea.tikeabackend.controler;
 
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
-import pucp.edu.pe.tikea.tikeabackend.DTO.PromocionModificacionRequest;
 import pucp.edu.pe.tikea.tikeabackend.DTO.PromocionRegistroRequest;
 import pucp.edu.pe.tikea.tikeabackend.DTO.PromocionResponse;
+import pucp.edu.pe.tikea.tikeabackend.DTO.RegistroClienteRequest;
 import pucp.edu.pe.tikea.tikeabackend.services.PromocionService;
 
 import java.util.List;
@@ -36,7 +36,7 @@ public class PromocionController {
 
     @PutMapping("/{id}")
     public PromocionResponse actualizar(@PathVariable Integer id,
-                                         @RequestBody PromocionModificacionRequest dto) {
+                                         @RequestBody RegistroClienteRequest.PromocionModificacionRequest dto) {
         return promocionService.actualizar(id, dto);
     }
 

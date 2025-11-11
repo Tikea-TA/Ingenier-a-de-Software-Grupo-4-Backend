@@ -2,9 +2,9 @@ package pucp.edu.pe.tikea.tikeabackend.services;
 
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
-import pucp.edu.pe.tikea.tikeabackend.DTO.PromocionModificacionRequest;
 import pucp.edu.pe.tikea.tikeabackend.DTO.PromocionRegistroRequest;
 import pucp.edu.pe.tikea.tikeabackend.DTO.PromocionResponse;
+import pucp.edu.pe.tikea.tikeabackend.DTO.RegistroClienteRequest;
 import pucp.edu.pe.tikea.tikeabackend.model.*;
 import pucp.edu.pe.tikea.tikeabackend.repository.EventoRepository;
 import pucp.edu.pe.tikea.tikeabackend.repository.PromocionRepository;
@@ -73,7 +73,7 @@ public class PromocionService {
     }
 
     @Transactional
-    public PromocionResponse actualizar(Integer id, PromocionModificacionRequest dto) {
+    public PromocionResponse actualizar(Integer id, RegistroClienteRequest.PromocionModificacionRequest dto) {
         Promocion p = buscarPromocionPorId(id);
 
         if (dto.getNombre() != null) p.setNombre(dto.getNombre());

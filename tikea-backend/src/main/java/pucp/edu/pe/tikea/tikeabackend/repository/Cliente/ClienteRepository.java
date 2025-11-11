@@ -1,8 +1,6 @@
-package pucp.edu.pe.tikea.tikeabackend.repository;
+package pucp.edu.pe.tikea.tikeabackend.repository.Cliente;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import pucp.edu.pe.tikea.tikeabackend.model.Cliente;
 import pucp.edu.pe.tikea.tikeabackend.model.TipoCliente;
 

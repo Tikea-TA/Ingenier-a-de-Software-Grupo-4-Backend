@@ -1,17 +1,16 @@
-package pucp.edu.pe.tikea.tikeabackend.services;
+package pucp.edu.pe.tikea.tikeabackend.services.Cliente;
 
 import jakarta.transaction.Transactional;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import pucp.edu.pe.tikea.tikeabackend.DTO.ClienteModficiacionRequest;
-import pucp.edu.pe.tikea.tikeabackend.DTO.ClienteResponse;
-import pucp.edu.pe.tikea.tikeabackend.DTO.LoginRequest;
+import pucp.edu.pe.tikea.tikeabackend.DTO.Cliente.ClienteModficiacionRequest;
+import pucp.edu.pe.tikea.tikeabackend.DTO.Cliente.ClienteResponse;
+import pucp.edu.pe.tikea.tikeabackend.DTO.Cliente.LoginRequest;
 import pucp.edu.pe.tikea.tikeabackend.DTO.RegistroClienteRequest;
 import pucp.edu.pe.tikea.tikeabackend.model.Cliente;
 import pucp.edu.pe.tikea.tikeabackend.model.TipoCliente;
 import pucp.edu.pe.tikea.tikeabackend.model.TipoEstado;
-import pucp.edu.pe.tikea.tikeabackend.repository.ClienteRepository;
-import lombok.RequiredArgsConstructor;
+import pucp.edu.pe.tikea.tikeabackend.repository.Cliente.ClienteRepository;
 
 import java.time.LocalDateTime;
 import java.util.List;
