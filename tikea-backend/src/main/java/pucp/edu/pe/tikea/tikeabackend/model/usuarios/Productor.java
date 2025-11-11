@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.DynamicInsert;
 import pucp.edu.pe.tikea.tikeabackend.model.Usuario;
 
 import java.time.LocalDateTime;
@@ -16,6 +17,7 @@ import java.time.LocalDateTime;
 @PrimaryKeyJoinColumn(name = "idProductor")
 @Getter
 @Setter
+@DynamicInsert
 public class Productor extends Usuario {
 
     @ManyToOne

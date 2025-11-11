@@ -2,6 +2,7 @@ package pucp.edu.pe.tikea.tikeabackend.DTO.usuarios;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,7 +19,7 @@ public class ProductorRegistroRequest {
     private String nombre;
 
     @NotBlank(message = "El apellido es requerido")
-    private String apellido;
+    private String apellidos;
 
     @Email(message = "El email debe ser válido")
     @NotBlank(message = "El email es requerido")
@@ -37,7 +38,7 @@ public class ProductorRegistroRequest {
     private String DNI;
 
     // Datos de Productor
-    @NotBlank(message = "El ID del Gestor es requerido")
+    @NotNull(message = "El ID del Gestor es requerido")
     private Integer idGestor;
 
     @NotBlank(message = "La razón social es requerida")

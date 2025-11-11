@@ -27,9 +27,6 @@ public class ProductorService {
     private final GestorRepository gestorRepository;
 
     // =============== CREATE ===============
-    /**
-     * Registra un nuevo Productor en el sistema
-     */
     public ProductorResponse registrarProductor(ProductorRegistroRequest productorRegistroRequest) {
         // Validar que el Gestor existe
         Gestor gestor = gestorRepository.findById(productorRegistroRequest.getIdGestor())
@@ -48,7 +45,7 @@ public class ProductorService {
         // Crear la entidad Productor
         Productor productor = new Productor();
         productor.setNombre(productorRegistroRequest.getNombre());
-        productor.setApellido(productorRegistroRequest.getApellido());
+        productor.setApellido(productorRegistroRequest.getApellidos());
         productor.setCorreo(productorRegistroRequest.getEmail());
         productor.setTelefono(productorRegistroRequest.getTelefono());
         productor.setNombreUser(productorRegistroRequest.getNombreUsuario());
@@ -72,9 +69,6 @@ public class ProductorService {
     }
 
     // =============== READ ===============
-    /**
-     * Obtiene un Productor por ID
-     */
     public ProductorResponse obtenerProductor(Integer idProductor) {
         Productor productor = productorRepository.findById(idProductor)
                 .orElseThrow(() -> new RuntimeException("Productor no encontrado con ID: " + idProductor));
@@ -82,9 +76,6 @@ public class ProductorService {
         return convertirAResponseDTO(productor);
     }
 
-    /**
-     * Obtiene todos los Productores
-     */
     public List<ProductorResponse> obtenerTodosLosProductores() {
         return productorRepository.findAll()
                 .stream()
@@ -92,9 +83,6 @@ public class ProductorService {
                 .collect(Collectors.toList());
     }
 
-    /**
-     * Obtiene todos los Productores de un Gestor específico
-     */
     public List<ProductorResponse> obtenerProductoresPorGestor(Integer idGestor) {
         Gestor gestor = gestorRepository.findById(idGestor)
                 .orElseThrow(() -> new RuntimeException("Gestor no encontrado con ID: " + idGestor));
@@ -105,9 +93,6 @@ public class ProductorService {
                 .collect(Collectors.toList());
     }
 
-    /**
-     * Obtiene Productores por estado
-     */
     public List<ProductorResponse> obtenerProductoresPorEstado(TipoEstadoProductor estado) {
         return productorRepository.findByTipoEstadoProductor(estado)
                 .stream()
@@ -116,9 +101,6 @@ public class ProductorService {
     }
 
     // =============== UPDATE ===============
-    /**
-     * Actualiza los datos de un Productor
-     */
     public ProductorResponse actualizarProductor(Integer idProductor, ProductorModificacionRequest request) {
         Productor productor = productorRepository.findById(idProductor)
                 .orElseThrow(() -> new RuntimeException("Productor no encontrado con ID: " + idProductor));
@@ -165,9 +147,6 @@ public class ProductorService {
     }
 
     // =============== DELETE ===============
-    /**
-     * Elimina un Productor
-     */
     public void eliminarProductor(Integer idProductor) {
         Productor productor = productorRepository.findById(idProductor)
                 .orElseThrow(() -> new RuntimeException("Productor no encontrado con ID: " + idProductor));
@@ -175,10 +154,6 @@ public class ProductorService {
         productorRepository.delete(productor);
     }
 
-    // =============== MÉTODOS AUXILIARES ===============
-    /**
-     * Convierte una entidad Productor a ProductorResponse
-     */
     private ProductorResponse convertirAResponseDTO(Productor productor) {
         ProductorResponse dto = new ProductorResponse();
         dto.setIdProductor(productor.getIdUsuario());
@@ -203,10 +178,10 @@ public class ProductorService {
             GestorResponse gestorDTO = new GestorResponse();
             gestorDTO.setIdUsuario(productor.getGestor().getIdUsuario());
             gestorDTO.setNombre(productor.getGestor().getNombre());
-            gestorDTO.setApellido(productor.getGestor().getApellido());
+            gestorDTO.setApellidos(productor.getGestor().getApellido());
             gestorDTO.setCorreo(productor.getGestor().getCorreo());
             gestorDTO.setTelefono(productor.getGestor().getTelefono());
-            gestorDTO.setNombreUser(productor.getGestor().getNombreUser());
+            gestorDTO.setNombreUsuario(productor.getGestor().getNombreUser());
             gestorDTO.setDni(productor.getGestor().getDNI());
             gestorDTO.setEstado(productor.getGestor().getEstado());
             gestorDTO.setAreaGestion(productor.getGestor().getTipoArea());
