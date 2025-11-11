@@ -28,6 +28,7 @@
     </scm>
     <properties>
         <java.version>21</java.version>
+        <project.buildsourceEncoding>UTF-8</project.buildsourceEncoding>
     </properties>
     <dependencies>
         <dependency>
