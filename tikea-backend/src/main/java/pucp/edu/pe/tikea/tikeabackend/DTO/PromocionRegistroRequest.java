@@ -20,7 +20,7 @@ public class PromocionRegistroRequest {
     private String nombre;
     private String descripcion;
 
-    @NotBlank
+    @NotNull
     private TipoPromocion tipo;
 
     @Positive
@@ -35,7 +35,7 @@ public class PromocionRegistroRequest {
     @PositiveOrZero
     private int stockDisponible;
 
-    @NotBlank
+    @NotNull
     private TipoRestriccionPromocion condicionesCanal;
 
     private String condicionesSector;
