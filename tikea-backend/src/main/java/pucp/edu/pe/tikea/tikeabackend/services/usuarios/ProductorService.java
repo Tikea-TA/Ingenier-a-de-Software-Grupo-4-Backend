@@ -45,7 +45,7 @@ public class ProductorService {
         // Crear la entidad Productor
         Productor productor = new Productor();
         productor.setNombre(productorRegistroRequest.getNombre());
-        productor.setApellido(productorRegistroRequest.getApellidos());
+        productor.setApellidos(productorRegistroRequest.getApellidos());
         productor.setCorreo(productorRegistroRequest.getEmail());
         productor.setTelefono(productorRegistroRequest.getTelefono());
         productor.setNombreUser(productorRegistroRequest.getNombreUsuario());
@@ -158,7 +158,7 @@ public class ProductorService {
         ProductorResponse dto = new ProductorResponse();
         dto.setIdProductor(productor.getIdUsuario());
         dto.setNombre(productor.getNombre());
-        dto.setApellido(productor.getApellido());
+        dto.setApellidos(productor.getApellidos());
         dto.setCorreo(productor.getCorreo());
         dto.setTelefono(productor.getTelefono());
         dto.setNombreUsuario(productor.getNombreUser());
@@ -178,7 +178,7 @@ public class ProductorService {
             GestorResponse gestorDTO = new GestorResponse();
             gestorDTO.setIdUsuario(productor.getGestor().getIdUsuario());
             gestorDTO.setNombre(productor.getGestor().getNombre());
-            gestorDTO.setApellidos(productor.getGestor().getApellido());
+            gestorDTO.setApellidos(productor.getGestor().getApellidos());
             gestorDTO.setCorreo(productor.getGestor().getCorreo());
             gestorDTO.setTelefono(productor.getGestor().getTelefono());
             gestorDTO.setNombreUsuario(productor.getGestor().getNombreUser());

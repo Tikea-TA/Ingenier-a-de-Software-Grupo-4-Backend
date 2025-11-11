@@ -41,7 +41,7 @@ public class GestorService {
         // Crear la entidad Gestor
         Gestor gestor = new Gestor();
         gestor.setNombre(request.getNombre());
-        gestor.setApellido(request.getApellidos());
+        gestor.setApellidos(request.getApellidos());
         gestor.setCorreo(request.getEmail());
         gestor.setTelefono(request.getTelefono());
         gestor.setNombreUser(request.getNombreUsuario());
@@ -136,7 +136,7 @@ public class GestorService {
         GestorResponse dto = new GestorResponse();
         dto.setIdUsuario(gestor.getIdUsuario());
         dto.setNombre(gestor.getNombre());
-        dto.setApellidos(gestor.getApellido());
+        dto.setApellidos(gestor.getApellidos());
         dto.setCorreo(gestor.getCorreo());
         dto.setTelefono(gestor.getTelefono());
         dto.setNombreUsuario(gestor.getNombreUser());

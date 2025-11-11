@@ -29,7 +29,7 @@ public interface ProductorRepository extends JpaRepository<Productor, Integer> {
     Optional<Productor> findByNombreIgnoreCase(String nombre);
 
     // Buscar Productor por apellidos
-    Optional<Productor> findByApellidoIgnoreCase(String apellido);
+    Optional<Productor> findByApellidosIgnoreCase(String apellidos);
 
     // Buscar por DNI
     Optional<Productor> findByDNI(String DNI);

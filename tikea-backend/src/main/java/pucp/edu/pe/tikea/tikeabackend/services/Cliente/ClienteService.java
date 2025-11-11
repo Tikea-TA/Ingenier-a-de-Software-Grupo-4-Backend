@@ -35,7 +35,7 @@ public class ClienteService {
     public ClienteResponse registrar(RegistroClienteRequest dto) {
         Cliente c = new Cliente();
         c.setNombre(dto.getNombre());
-        c.setApellido(dto.getApellidos());
+        c.setApellidos(dto.getApellidos());
         c.setCorreo(dto.getCorreo());
         c.setTelefono(dto.getTelefono());
         c.setNombreUser(dto.getNombreUser());
@@ -104,7 +104,7 @@ public class ClienteService {
         ClienteResponse dto = new ClienteResponse();
         dto.setIdCliente(c.getIdUsuario());
         dto.setNombre(c.getNombre());
-        dto.setDNI(c.getApellido());
+        dto.setDNI(c.getApellidos());
         dto.setCorreo(c.getCorreo());
         dto.setTelefono(c.getTelefono());
         dto.setNombreUsuario(c.getNombreUser());

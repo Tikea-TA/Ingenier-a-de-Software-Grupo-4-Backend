@@ -15,7 +15,7 @@ public class ProductorResponse {
     // Datos heredados de Usuario
     private Integer idProductor;
     private String nombre;
-    private String apellido;
+    private String apellidos;
     private String correo;
     private String telefono;
     private String nombreUsuario;

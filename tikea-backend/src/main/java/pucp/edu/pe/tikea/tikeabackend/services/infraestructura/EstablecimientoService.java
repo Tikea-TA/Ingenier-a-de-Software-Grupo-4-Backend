@@ -175,7 +175,7 @@ public class EstablecimientoService {
             GestorResponse gestorDTO = new GestorResponse();
             gestorDTO.setIdUsuario(establecimiento.getGestor().getIdUsuario());
             gestorDTO.setNombre(establecimiento.getGestor().getNombre());
-            gestorDTO.setApellidos(establecimiento.getGestor().getApellido());
+            gestorDTO.setApellidos(establecimiento.getGestor().getApellidos());
             gestorDTO.setCorreo(establecimiento.getGestor().getCorreo());
             gestorDTO.setTelefono(establecimiento.getGestor().getTelefono());
             gestorDTO.setNombreUsuario(establecimiento.getGestor().getNombreUser());
