@@ -21,7 +21,9 @@ public class SegurityConfig {
                                 "/api/productores",
                                 "/api/productores/**",
                                 "/api/gestores",
-                                "/api/gestores/**"
+                                "/api/gestores/**",
+                                "/api/establecimientos",
+                                "/api/establecimientos/**"
                         ).permitAll()
                         .anyRequest().permitAll()
                 )
