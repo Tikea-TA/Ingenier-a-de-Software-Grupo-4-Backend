@@ -6,21 +6,22 @@ import  lombok.Data;
 import lombok.NoArgsConstructor;
 import pucp.edu.pe.tikea.tikeabackend.model.TipoCliente;
 import pucp.edu.pe.tikea.tikeabackend.model.TipoEstado;
+
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class ClienteResponse {
+    //ID que hereda de Usuario, asi que es el mismo
     private Integer idCliente;
-    private Integer idUsuario;
 
     // Usuario
     private String nombre;
-    private String apellido;
+    private String apellidos;
     private String correo;
     private String telefono;
-    private String nombreUser;
-    private String dni;
+    private String nombreUsuario;
+    private String DNI;
     private TipoEstado estado;
 
     // Cliente

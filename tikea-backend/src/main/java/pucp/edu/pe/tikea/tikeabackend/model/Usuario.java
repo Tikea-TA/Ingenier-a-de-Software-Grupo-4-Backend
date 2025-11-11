@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.Generated;
+import org.hibernate.annotations.GenerationTime;
 import java.time.LocalDateTime;
 
 @Entity
@@ -16,31 +18,51 @@ import java.time.LocalDateTime;
 @Setter
 
 public class Usuario {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name ="idUsuario")
-    private int id;
+    private Integer idUsuario;
+
     private String nombre;
+
     @Column(name = "apellidos")
     private String apellido;
+
     private String correo;
     private String telefono;
-    @Column(name = "nombre_user")
+
+    @Column(name = "nombreUsuario")
     private String nombreUser;
+
+    @Column(name = "password")
     private String password;
+
     private TipoEstado estado;
-    @Column(name = "dni")
+
+    @Column(name = "DNI")
     private String DNI;
-    @Column(name = "fecha_registro")
+
+    @Column(name = "fechaRegistro")
+    @CreationTimestamp
     private LocalDateTime fechaRegistro;
-    @Column(name = "fecha_ultima_modificacion")
+
+    @Column(name = "fechaUltimaModificacion")
     private LocalDateTime fechaUltimaModificacion;
-    @Column(name = "requiere_cambio_password")
+
+    @Column(name = "requiereCambioContraseña")
     private Boolean RequiereCambioPassword;
-    @Column(name = "fecha_ultimo_acceso")
+
+    @Column(name = "fechaUltimoAcceso")
     private LocalDateTime fechaUltimoAcceso;
-    @Column(name = "ip_ultimo_acceso")
+
+    @Column(name = "ipUltimoAcceso")
     private String ipUltimoAcceso;
+
+    @Column(name = "activo", insertable = false)
+    @Generated(GenerationTime.INSERT)
+    private Integer activo;
+
     public  boolean estActivo() {
         return  this.estado == TipoEstado.ACTIVO;
     }

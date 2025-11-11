@@ -13,10 +13,19 @@ public class SegurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/clientes/registro", "/api/clientes/login").permitAll()
-                        .anyRequest().permitAll() // ← deja toda tu API libre mientras desarrollas
+                        // Rutas públicas - sin autenticación requerida
+                        .requestMatchers(
+                                "/api/clientes/registro",
+                                "/api/clientes/login",
+                                "/api/productores/registro",
+                                "/api/productores",
+                                "/api/productores/**",
+                                "/api/gestores",
+                                "/api/gestores/**"
+                        ).permitAll()
+                        .anyRequest().permitAll()
                 )
-                .formLogin(form -> form.disable()); // ← evita redirección a /login
+                .formLogin(form -> form.disable());
 
         return http.build();
     }
