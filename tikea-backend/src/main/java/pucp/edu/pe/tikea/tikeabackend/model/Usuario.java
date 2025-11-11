@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.Generated;
+import org.hibernate.annotations.GenerationTime;
 import java.time.LocalDateTime;
 
 @Entity
@@ -56,6 +58,10 @@ public class Usuario {
 
     @Column(name = "ipUltimoAcceso")
     private String ipUltimoAcceso;
+
+    @Column(name = "activo", insertable = false)
+    @Generated(GenerationTime.INSERT)
+    private Integer activo;
 
     public  boolean estActivo() {
         return  this.estado == TipoEstado.ACTIVO;

@@ -1,6 +1,7 @@
 package pucp.edu.pe.tikea.tikeabackend.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import pucp.edu.pe.tikea.tikeabackend.model.Cliente;
 import pucp.edu.pe.tikea.tikeabackend.model.TipoCliente;
@@ -20,9 +21,8 @@ public interface ClienteRepository extends JpaRepository<Cliente,Integer> {
     // Buscar Clientes por tipo de cliente
     List<Cliente> findByTipoCliente(TipoCliente tipoCliente);
 
-    // Buscar Clientes activos
+    // Buscar Clientes activos accediendo al campo activo de Usuario
     List<Cliente> findByActivo(Integer activo);
 
-    // Buscar Clientes por tipo y activos
     List<Cliente> findByTipoClienteAndActivo(TipoCliente tipoCliente, Integer activo);
 }

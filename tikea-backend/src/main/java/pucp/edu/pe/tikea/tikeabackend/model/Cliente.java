@@ -25,6 +25,4 @@ public class Cliente extends Usuario {
     @Column(name = "tipoCliente")
     private TipoCliente tipoCliente;
 
-    @Column(name = "activo")
-    private Integer activo;
 }
