@@ -22,7 +22,7 @@ public class RegistroClienteRequest {
     @Email @NotBlank private String correo;
     @NotBlank private String password;
     private String telefono;
-    private String nombreUser;
+    private String nombreUsuario;
     private String dni;
 
     //cliente
