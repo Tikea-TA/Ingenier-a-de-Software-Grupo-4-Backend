@@ -38,7 +38,7 @@ public class ClienteService {
         c.setApellidos(dto.getApellidos());
         c.setCorreo(dto.getCorreo());
         c.setTelefono(dto.getTelefono());
-        c.setNombreUser(dto.getNombreUser());
+        c.setNombreUser(dto.getNombreUsuario());
         c.setDNI(dto.getDni());
         c.setPassword(encoder.encode(dto.getPassword())); // HASH
         c.setEstado(TipoEstado.ACTIVO);
@@ -104,7 +104,7 @@ public class ClienteService {
         ClienteResponse dto = new ClienteResponse();
         dto.setIdCliente(c.getIdUsuario());
         dto.setNombre(c.getNombre());
-        dto.setDNI(c.getApellidos());
+        dto.setApellidos(c.getApellidos());
         dto.setCorreo(c.getCorreo());
         dto.setTelefono(c.getTelefono());
         dto.setNombreUsuario(c.getNombreUser());
