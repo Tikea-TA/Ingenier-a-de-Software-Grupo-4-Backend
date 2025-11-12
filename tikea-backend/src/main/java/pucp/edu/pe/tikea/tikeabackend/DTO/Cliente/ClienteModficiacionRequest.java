@@ -3,7 +3,6 @@ package pucp.edu.pe.tikea.tikeabackend.DTO.Cliente;
 import lombok.AllArgsConstructor;
 import  lombok.Data ;
 import lombok.NoArgsConstructor;
-
 @Data @NoArgsConstructor
 @AllArgsConstructor
 public class ClienteModficiacionRequest {
