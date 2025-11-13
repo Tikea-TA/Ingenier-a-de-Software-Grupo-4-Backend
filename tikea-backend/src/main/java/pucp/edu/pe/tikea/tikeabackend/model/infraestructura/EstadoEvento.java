@@ -1,4 +1,4 @@
-package pucp.edu.pe.tikea.tikeabackend.model;
+package pucp.edu.pe.tikea.tikeabackend.model.infraestructura;
 
 public enum EstadoEvento {
     CANCELADO("Cancelado", "Evento cancelado"),

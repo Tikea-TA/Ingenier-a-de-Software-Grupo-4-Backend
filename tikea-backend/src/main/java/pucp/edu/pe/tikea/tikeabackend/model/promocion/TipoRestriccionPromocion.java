@@ -1,4 +1,4 @@
-package pucp.edu.pe.tikea.tikeabackend.model;
+package pucp.edu.pe.tikea.tikeabackend.model.promocion;
 
 public enum TipoRestriccionPromocion {
     TAQUILLA("Promoción por taquilla", "Promoción solo válida para venta en taquilla"),

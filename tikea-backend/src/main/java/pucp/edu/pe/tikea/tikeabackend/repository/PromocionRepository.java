@@ -5,8 +5,8 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import pucp.edu.pe.tikea.tikeabackend.model.EstadoActividad;
-import pucp.edu.pe.tikea.tikeabackend.model.Promocion;
+import pucp.edu.pe.tikea.tikeabackend.model.promocion.EstadoActividad;
+import pucp.edu.pe.tikea.tikeabackend.model.promocion.Promocion;
 
 public interface PromocionRepository extends JpaRepository<Promocion, Integer> {
     // Consultas ligadas al evento

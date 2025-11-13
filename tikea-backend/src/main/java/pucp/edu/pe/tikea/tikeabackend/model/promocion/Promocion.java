@@ -1,4 +1,4 @@
-package pucp.edu.pe.tikea.tikeabackend.model;
+package pucp.edu.pe.tikea.tikeabackend.model.promocion;
 
 import java.sql.Timestamp;
 
@@ -15,6 +15,7 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import pucp.edu.pe.tikea.tikeabackend.model.infraestructura.Evento;
 
 @Entity
 @Table(name = "Promocion")

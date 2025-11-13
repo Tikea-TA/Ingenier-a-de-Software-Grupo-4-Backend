@@ -6,8 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import pucp.edu.pe.tikea.tikeabackend.model.TipoPromocion;
-import pucp.edu.pe.tikea.tikeabackend.model.TipoRestriccionPromocion;
+import pucp.edu.pe.tikea.tikeabackend.model.promocion.TipoPromocion;
+import pucp.edu.pe.tikea.tikeabackend.model.promocion.TipoRestriccionPromocion;
 
 import java.sql.Timestamp;
 

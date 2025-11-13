@@ -7,7 +7,7 @@ import pucp.edu.pe.tikea.tikeabackend.DTO.usuarios.GestorModificacionRequest;
 import pucp.edu.pe.tikea.tikeabackend.DTO.usuarios.GestorResponse;
 import pucp.edu.pe.tikea.tikeabackend.model.usuarios.Gestor;
 import pucp.edu.pe.tikea.tikeabackend.model.usuarios.TipoArea;
-import pucp.edu.pe.tikea.tikeabackend.model.TipoEstado;
+import pucp.edu.pe.tikea.tikeabackend.model.usuarios.TipoEstado;
 import lombok.RequiredArgsConstructor;
 import pucp.edu.pe.tikea.tikeabackend.repository.usuarios.GestorRepository;
 

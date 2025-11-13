@@ -3,7 +3,7 @@ package pucp.edu.pe.tikea.tikeabackend.DTO.usuarios;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import pucp.edu.pe.tikea.tikeabackend.model.TipoEstado;
+import pucp.edu.pe.tikea.tikeabackend.model.usuarios.TipoEstado;
 import pucp.edu.pe.tikea.tikeabackend.model.usuarios.TipoEstadoProductor;
 
 import java.time.LocalDateTime;

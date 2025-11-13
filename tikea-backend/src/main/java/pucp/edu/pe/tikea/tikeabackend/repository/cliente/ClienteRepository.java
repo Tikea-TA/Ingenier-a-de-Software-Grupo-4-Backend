@@ -1,8 +1,8 @@
-package pucp.edu.pe.tikea.tikeabackend.repository.Cliente;
+package pucp.edu.pe.tikea.tikeabackend.repository.cliente;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import pucp.edu.pe.tikea.tikeabackend.model.Cliente;
-import pucp.edu.pe.tikea.tikeabackend.model.TipoCliente;
+import pucp.edu.pe.tikea.tikeabackend.model.usuarios.Cliente;
+import pucp.edu.pe.tikea.tikeabackend.model.usuarios.TipoCliente;
 
 import java.util.List;
 import java.util.Optional;
@@ -10,10 +10,10 @@ import java.util.Optional;
 public interface ClienteRepository extends JpaRepository<Cliente,Integer> {
     Optional<Cliente> findByCorreoIgnoreCase(String correo);
 
-    // Buscar Cliente por nombre de usuario
+    // Buscar cliente por nombre de usuario
     Optional<Cliente> findByNombreUserIgnoreCase(String nombreUser);
 
-    // Buscar Cliente por DNI
+    // Buscar cliente por DNI
     Optional<Cliente> findByDNI(String DNI);
 
     // Buscar Clientes por tipo de cliente

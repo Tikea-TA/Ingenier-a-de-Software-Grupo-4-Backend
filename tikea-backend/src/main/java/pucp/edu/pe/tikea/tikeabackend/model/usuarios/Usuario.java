@@ -1,12 +1,12 @@
-package pucp.edu.pe.tikea.tikeabackend.model;
+package pucp.edu.pe.tikea.tikeabackend.model.usuarios;
 
 
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.Generated;
 import org.hibernate.annotations.GenerationTime;
+
 import java.time.LocalDateTime;
 
 @Entity

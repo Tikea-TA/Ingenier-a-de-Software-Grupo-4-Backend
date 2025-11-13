@@ -1,4 +1,4 @@
-package pucp.edu.pe.tikea.tikeabackend.model;
+package pucp.edu.pe.tikea.tikeabackend.model.infraestructura;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -16,6 +16,7 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import pucp.edu.pe.tikea.tikeabackend.model.promocion.Promocion;
 
 @Entity
 @Table(name = "Evento")

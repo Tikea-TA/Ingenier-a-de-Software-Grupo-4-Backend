@@ -3,14 +3,14 @@ package pucp.edu.pe.tikea.tikeabackend.services.Cliente;
 import jakarta.transaction.Transactional;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import pucp.edu.pe.tikea.tikeabackend.DTO.Cliente.ClienteModficiacionRequest;
-import pucp.edu.pe.tikea.tikeabackend.DTO.Cliente.ClienteResponse;
-import pucp.edu.pe.tikea.tikeabackend.DTO.Cliente.LoginRequest;
+import pucp.edu.pe.tikea.tikeabackend.DTO.usuarios.cliente.ClienteModficiacionRequest;
+import pucp.edu.pe.tikea.tikeabackend.DTO.usuarios.cliente.ClienteResponse;
+import pucp.edu.pe.tikea.tikeabackend.DTO.usuarios.cliente.LoginRequest;
 import pucp.edu.pe.tikea.tikeabackend.DTO.RegistroClienteRequest;
-import pucp.edu.pe.tikea.tikeabackend.model.Cliente;
-import pucp.edu.pe.tikea.tikeabackend.model.TipoCliente;
-import pucp.edu.pe.tikea.tikeabackend.model.TipoEstado;
-import pucp.edu.pe.tikea.tikeabackend.repository.Cliente.ClienteRepository;
+import pucp.edu.pe.tikea.tikeabackend.model.usuarios.Cliente;
+import pucp.edu.pe.tikea.tikeabackend.model.usuarios.TipoCliente;
+import pucp.edu.pe.tikea.tikeabackend.model.usuarios.TipoEstado;
+import pucp.edu.pe.tikea.tikeabackend.repository.cliente.ClienteRepository;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -64,7 +64,7 @@ public class ClienteService {
     @Transactional
     public ClienteResponse actualizar(Integer id, ClienteModficiacionRequest dto) {
         Cliente c = clienteRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Cliente no encontrado: " + id));
+                .orElseThrow(() -> new IllegalArgumentException("cliente no encontrado: " + id));
 
         // --- Usuario
         if (dto.getCorreo() != null) c.setCorreo(dto.getCorreo());
@@ -76,7 +76,7 @@ public class ClienteService {
             c.setRequiereCambioPassword(false); // o true, según lógica
         }
 
-        // --- Cliente
+        // --- cliente
         if (dto.getDireccion() != null) c.setDireccion(dto.getDireccion());
         if (dto.getPuntosPromocionales() != null) c.setPuntosPromocionales(dto.getPuntosPromocionales());
         if (dto.getTipoCliente() != null) {
@@ -92,7 +92,7 @@ public class ClienteService {
     @Transactional
     public ClienteResponse inactivar(Integer id) {
         Cliente c = clienteRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Cliente no encontrado: " + id));
+                .orElseThrow(() -> new IllegalArgumentException("cliente no encontrado: " + id));
 
         c.setEstado(TipoEstado.INACTIVO);
         c.setFechaUltimaModificacion(LocalDateTime.now());

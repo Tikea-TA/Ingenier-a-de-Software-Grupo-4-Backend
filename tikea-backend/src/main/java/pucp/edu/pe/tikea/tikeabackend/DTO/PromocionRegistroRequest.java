@@ -8,8 +8,8 @@ import jakarta.validation.constraints.PositiveOrZero;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import pucp.edu.pe.tikea.tikeabackend.model.TipoPromocion;
-import pucp.edu.pe.tikea.tikeabackend.model.TipoRestriccionPromocion;
+import pucp.edu.pe.tikea.tikeabackend.model.promocion.TipoPromocion;
+import pucp.edu.pe.tikea.tikeabackend.model.promocion.TipoRestriccionPromocion;
 
 @Data
 @AllArgsConstructor

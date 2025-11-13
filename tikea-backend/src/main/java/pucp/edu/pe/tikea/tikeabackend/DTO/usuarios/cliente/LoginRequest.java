@@ -1,4 +1,4 @@
-package pucp.edu.pe.tikea.tikeabackend.DTO.Cliente;
+package pucp.edu.pe.tikea.tikeabackend.DTO.usuarios.cliente;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

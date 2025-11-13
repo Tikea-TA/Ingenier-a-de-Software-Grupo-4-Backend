@@ -6,7 +6,6 @@ import lombok.*;
 import org.hibernate.annotations.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.Generated;
-import pucp.edu.pe.tikea.tikeabackend.model.TipoEstado;
 import pucp.edu.pe.tikea.tikeabackend.model.usuarios.Gestor;
 
 import java.time.LocalDateTime;

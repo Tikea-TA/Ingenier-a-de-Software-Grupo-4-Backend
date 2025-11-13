@@ -1,4 +1,4 @@
-package pucp.edu.pe.tikea.tikeabackend.model;
+package pucp.edu.pe.tikea.tikeabackend.model.usuarios;
 
 public enum TipoEstado {
     ACTIVO("Activo", "Usuario puede acceder"),

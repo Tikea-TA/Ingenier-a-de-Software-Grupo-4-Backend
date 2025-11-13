@@ -1,4 +1,4 @@
-package pucp.edu.pe.tikea.tikeabackend.model;
+package pucp.edu.pe.tikea.tikeabackend.model.promocion;
 
 public enum TipoPromocion {
     DESCUENTO_PREVENTA("Descuento para preventa", "Este descuento solo aplica en preventa"),

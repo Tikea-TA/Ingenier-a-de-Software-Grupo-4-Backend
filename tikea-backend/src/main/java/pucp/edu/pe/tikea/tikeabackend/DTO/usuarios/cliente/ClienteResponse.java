@@ -1,11 +1,11 @@
-package pucp.edu.pe.tikea.tikeabackend.DTO.Cliente;
+package pucp.edu.pe.tikea.tikeabackend.DTO.usuarios.cliente;
 
 import lombok.AllArgsConstructor;
 import  lombok.Builder;
 import  lombok.Data;
 import lombok.NoArgsConstructor;
-import pucp.edu.pe.tikea.tikeabackend.model.TipoCliente;
-import pucp.edu.pe.tikea.tikeabackend.model.TipoEstado;
+import pucp.edu.pe.tikea.tikeabackend.model.usuarios.TipoCliente;
+import pucp.edu.pe.tikea.tikeabackend.model.usuarios.TipoEstado;
 
 @Data
 @Builder
@@ -24,7 +24,7 @@ public class ClienteResponse {
     private String DNI;
     private TipoEstado estado;
 
-    // Cliente
+    // cliente
     private String direccion;
     private int puntosPromociones;
     private TipoCliente tipoCliente;

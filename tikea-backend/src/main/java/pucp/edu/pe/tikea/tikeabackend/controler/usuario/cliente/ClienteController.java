@@ -1,10 +1,10 @@
-package pucp.edu.pe.tikea.tikeabackend.controler.Cliente;
+package pucp.edu.pe.tikea.tikeabackend.controler.usuario.cliente;
 
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
-import pucp.edu.pe.tikea.tikeabackend.DTO.Cliente.ClienteModficiacionRequest;
-import pucp.edu.pe.tikea.tikeabackend.DTO.Cliente.ClienteResponse;
-import pucp.edu.pe.tikea.tikeabackend.DTO.Cliente.LoginRequest;
+import pucp.edu.pe.tikea.tikeabackend.DTO.usuarios.cliente.ClienteModficiacionRequest;
+import pucp.edu.pe.tikea.tikeabackend.DTO.usuarios.cliente.ClienteResponse;
+import pucp.edu.pe.tikea.tikeabackend.DTO.usuarios.cliente.LoginRequest;
 import pucp.edu.pe.tikea.tikeabackend.DTO.RegistroClienteRequest;
 import pucp.edu.pe.tikea.tikeabackend.services.Cliente.ClienteService;
 

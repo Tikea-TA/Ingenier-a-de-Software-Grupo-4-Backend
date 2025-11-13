@@ -1,9 +1,8 @@
 package pucp.edu.pe.tikea.tikeabackend.repository.usuarios;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-import pucp.edu.pe.tikea.tikeabackend.model.TipoEstado;
+import pucp.edu.pe.tikea.tikeabackend.model.usuarios.TipoEstado;
 import pucp.edu.pe.tikea.tikeabackend.model.usuarios.Gestor;
 import pucp.edu.pe.tikea.tikeabackend.model.usuarios.TipoArea;
 

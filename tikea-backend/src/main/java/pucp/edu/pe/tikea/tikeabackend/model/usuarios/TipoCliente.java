@@ -1,8 +1,8 @@
-package pucp.edu.pe.tikea.tikeabackend.model;
+package pucp.edu.pe.tikea.tikeabackend.model.usuarios;
 
 public enum TipoCliente {
     REGISTRADO("Registrado","CLiente esta registrado en el sistema"),
-    NO_REGISTRADO("NoRegistrado","Cliente no registrado");
+    NO_REGISTRADO("NoRegistrado","cliente no registrado");
 
     private final String descripcion;
     private final String Nombre;
