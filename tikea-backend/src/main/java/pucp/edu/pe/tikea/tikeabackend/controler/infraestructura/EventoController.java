@@ -3,13 +3,11 @@ package pucp.edu.pe.tikea.tikeabackend.controler.infraestructura;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import pucp.edu.pe.tikea.tikeabackend.DTO.infraestructura.EventoRegistroRequest;
-import pucp.edu.pe.tikea.tikeabackend.DTO.infraestructura.EventoModificacionRequest;
-import pucp.edu.pe.tikea.tikeabackend.DTO.infraestructura.EventoResponse;
+import pucp.edu.pe.tikea.tikeabackend.DTO.infraestructura.*;
 import pucp.edu.pe.tikea.tikeabackend.model.infraestructura.CategoriaEvento;
 import pucp.edu.pe.tikea.tikeabackend.model.infraestructura.EstadoEvento;
 import pucp.edu.pe.tikea.tikeabackend.services.infraestructura.EventoService;
-
+import org.springframework.http.ResponseEntity;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -97,4 +95,13 @@ public class EventoController {
             @PathVariable Integer idEvento) {
         eventoService.eliminarEvento(idEvento);
     }
+    @PostMapping("/eventosReporte") //
+    public ResponseEntity<List<ReporteEventoDetalle>> generarReporteDetalladoDeEventos(
+            @RequestBody ReporteRequestEvento requestDTO) {
+
+        // Llama al nuevo método del servicio
+        List<ReporteEventoDetalle> reporte = eventoService.generarReporteDetalladoPorFechaEvento(requestDTO);
+        return ResponseEntity.ok(reporte);
+    }
+
 }

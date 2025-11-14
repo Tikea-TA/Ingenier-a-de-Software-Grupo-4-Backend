@@ -2,10 +2,7 @@ package pucp.edu.pe.tikea.tikeabackend.services.infraestructura;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pucp.edu.pe.tikea.tikeabackend.DTO.infraestructura.EventoRegistroRequest;
-import pucp.edu.pe.tikea.tikeabackend.DTO.infraestructura.EventoModificacionRequest;
-import pucp.edu.pe.tikea.tikeabackend.DTO.infraestructura.EventoResponse;
-import pucp.edu.pe.tikea.tikeabackend.DTO.infraestructura.EstablecimientoResponse;
+import pucp.edu.pe.tikea.tikeabackend.DTO.infraestructura.*;
 import pucp.edu.pe.tikea.tikeabackend.DTO.usuarios.ProductorResponse;
 import pucp.edu.pe.tikea.tikeabackend.DTO.usuarios.GestorResponse;
 import pucp.edu.pe.tikea.tikeabackend.model.infraestructura.Evento;
@@ -309,4 +306,12 @@ public class EventoService {
 
         return dto;
     }
+    public List<ReporteEventoDetalle> generarReporteDetalladoPorFechaEvento(ReporteRequestEvento requestDTO) {
+        LocalDate inicio = requestDTO.getFechaInicio();
+        LocalDate fin = requestDTO.getFechaFin();
+        Integer idProductor = requestDTO.getIdProductor();
+        // Llama a la nueva consulta del repositorio
+        return eventoRepository.generarReporteDetalladoPorFechaEvento(inicio, fin,idProductor);
+    }
+
 }

@@ -1,7 +1,10 @@
 package pucp.edu.pe.tikea.tikeabackend.repository.infraestructura;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import pucp.edu.pe.tikea.tikeabackend.DTO.infraestructura.ReporteEventoDetalle;
 import pucp.edu.pe.tikea.tikeabackend.model.infraestructura.Evento;
 import pucp.edu.pe.tikea.tikeabackend.model.infraestructura.CategoriaEvento;
 import pucp.edu.pe.tikea.tikeabackend.model.infraestructura.EstadoEvento;
@@ -66,4 +69,33 @@ public interface EventoRepository extends JpaRepository<Evento, Integer> {
 
     // Contar Eventos activos
     long countByActivo(Integer activo);
+
+
+
+
+
+    @Query("SELECT new pucp.edu.pe.tikea.tikeabackend.DTO.infraestructura.ReporteEventoDetalle( " +
+            "e.nombreEvento, " +
+                "e.fecha, " +
+                "e.aforoTotal, " +
+                "COUNT(t.idTicketEspecifico), " +
+                "SUM(t.precioCompra), " +
+                "SUM(t.precioCompra - COALESCE(t.descuentoAplicado, 0.0))" +
+                ") " +
+                "FROM Evento e " +
+                "LEFT JOIN TicketEspecifico t ON t.evento = e " +
+                "WHERE e.fecha BETWEEN :fechaInicio AND :fechaFin " +
+
+                "AND e.productor.idUsuario = :idProductor " +
+                // ----------------------------------
+                "GROUP BY e.idEvento, e.nombreEvento, e.fecha, e.aforoTotal " +
+                "ORDER BY e.fecha")
+    List<ReporteEventoDetalle> generarReporteDetalladoPorFechaEvento(
+                @Param("fechaInicio") LocalDate fechaInicio,
+                @Param("fechaFin") LocalDate fechaFin,
+                @Param("idProductor") Integer idProductor // El ID del productor (que es un idUsuario)
+    );
+
+
+
 }
