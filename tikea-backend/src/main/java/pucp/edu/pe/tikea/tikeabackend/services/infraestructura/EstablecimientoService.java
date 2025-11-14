@@ -53,15 +53,15 @@ public class EstablecimientoService {
         Establecimiento establecimientoGuardado = establecimientoRepository.save(establecimiento);
 
         // Refrescar la entidad para obtener el valor de activo de la BD
-        establecimientoRepository.flush();
-        entityManager.refresh(establecimientoGuardado);
+        Establecimiento establecimientoConGestor = establecimientoRepository.findByIdWithGestor(establecimientoGuardado.getIdEstablecimiento())
+                .orElse(establecimientoGuardado);
 
         // Retornar como DTO
-        return convertirAResponseDTO(establecimientoGuardado);
+        return convertirAResponseDTO(establecimientoConGestor);
     }
 
     public EstablecimientoResponse obtenerEstablecimiento(Integer idEstablecimiento) {
-        Establecimiento establecimiento = establecimientoRepository.findById(idEstablecimiento)
+        Establecimiento establecimiento = establecimientoRepository.findByIdWithGestor(idEstablecimiento)
                 .orElseThrow(() -> new RuntimeException("Establecimiento no encontrado con ID: " + idEstablecimiento));
 
         return convertirAResponseDTO(establecimiento);

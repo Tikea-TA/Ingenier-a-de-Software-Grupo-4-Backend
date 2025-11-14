@@ -1,6 +1,8 @@
 package pucp.edu.pe.tikea.tikeabackend.repository.infraestructura;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import pucp.edu.pe.tikea.tikeabackend.model.infraestructura.Establecimiento;
 import pucp.edu.pe.tikea.tikeabackend.model.infraestructura.TipoEstadoLocal;
@@ -41,4 +43,7 @@ public interface EstablecimientoRepository extends JpaRepository<Establecimiento
 
     // Contar Establecimientos activos
     long countByActivo(Integer activo);
+
+    @Query("SELECT e FROM Establecimiento e LEFT JOIN FETCH e.gestor WHERE e.idEstablecimiento = :id")
+    Optional<Establecimiento> findByIdWithGestor(@Param("id") Integer id);
 }
