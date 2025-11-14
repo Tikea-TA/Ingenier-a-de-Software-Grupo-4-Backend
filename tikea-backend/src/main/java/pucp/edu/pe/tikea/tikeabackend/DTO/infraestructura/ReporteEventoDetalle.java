@@ -23,16 +23,16 @@ public class ReporteEventoDetalle {
     private Double gananciasEsperadas;
 
     // Ganancias Reales (ganancias esperadas - total descuentado)
-    private Long gananciasReales;
+    private Double gananciasReales;
 
 
     public ReporteEventoDetalle(String nombreEvento, LocalDate fechaEvento, int aforo,
-                                Long ticketsVendidos, Double gananciasEsperadas, Long gananciasReales) {
+                                Long ticketsVendidos, Double gananciasEsperadas, Double gananciasReales) {
         this.nombreEvento = nombreEvento;
         this.fechaEvento = fechaEvento;
         this.aforo = aforo;
         this.ticketsVendidos = ticketsVendidos;
         this.gananciasEsperadas = (gananciasEsperadas == null) ? 0.0 : gananciasEsperadas;
-        this.gananciasReales = gananciasReales;
+        this.gananciasReales = (gananciasReales == null) ? 0.0 : gananciasReales;
     }
 }

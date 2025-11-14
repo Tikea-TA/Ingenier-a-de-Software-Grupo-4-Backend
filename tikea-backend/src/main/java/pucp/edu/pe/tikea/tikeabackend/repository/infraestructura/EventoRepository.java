@@ -79,8 +79,8 @@ public interface EventoRepository extends JpaRepository<Evento, Integer> {
                 "e.fecha, " +
                 "e.aforoTotal, " +
                 "COUNT(t.idTicketEspecifico), " +
-                "SUM(t.precioCompra), " +
-                "SUM(t.precioCompra - COALESCE(t.descuentoAplicado, 0.0))" +
+                "COALESCE(SUM(t.precioCompra), 0), " +
+                "COALESCE(SUM(t.precioCompra - COALESCE(t.descuentoAplicado, 0.0)), 0)" +
                 ") " +
                 "FROM Evento e " +
                 "LEFT JOIN TicketEspecifico t ON t.evento = e " +
