@@ -2,8 +2,8 @@ package pucp.edu.pe.tikea.tikeabackend.services.venta;
 
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
-import pucp.edu.pe.tikea.tikeabackend.DTO.Venta.ReservaRequestDTO;
-import pucp.edu.pe.tikea.tikeabackend.DTO.Venta.ReservaResponse;
+import pucp.edu.pe.tikea.tikeabackend.DTO.venta.ReservaRequestDTO;
+import pucp.edu.pe.tikea.tikeabackend.DTO.venta.ReservaResponse;
 import pucp.edu.pe.tikea.tikeabackend.model.usuarios.Cliente;
 import pucp.edu.pe.tikea.tikeabackend.model.usuarios.Taquillero;
 import pucp.edu.pe.tikea.tikeabackend.model.venta.Reserva;
