@@ -27,13 +27,13 @@ public class ReservaService {
     }
 
     public ReservaResponse crearReserva(ReservaRequestDTO dto){
-        Cliente cliente = clienteRepository.findById(dto.getClienteId()).
+        Cliente cliente = clienteRepository.findById(dto.getIdCliente()).
                 orElseThrow(() -> new RuntimeException("Cliente no encontrado"));
 
         Taquillero taquillero = null;
 
-        if(dto.getTaquilleroId() != null){
-            taquillero= taquilleroRepository.findById(dto.getTaquilleroId()).
+        if(dto.getIdTaquillero() != null){
+            taquillero= taquilleroRepository.findById(dto.getIdTaquillero()).
                     orElseThrow(() -> new RuntimeException("Taquillero no encontrado"));
 
         }
@@ -59,14 +59,14 @@ public class ReservaService {
                 .orElseThrow(() -> new RuntimeException("Reserva no encontrada"));
 
 
-        if (dto.getClienteId() != null) {
-            Cliente cliente = clienteRepository.findById(dto.getClienteId())
+        if (dto.getIdCliente() != null) {
+            Cliente cliente = clienteRepository.findById(dto.getIdCliente())
                     .orElseThrow(() -> new RuntimeException("Cliente no encontrado"));
             reserva.setCliente(cliente);
         }
 
-        if (dto.getTaquilleroId() != null) {
-            Taquillero taquillero = taquilleroRepository.findById(dto.getTaquilleroId())
+        if (dto.getIdTaquillero() != null) {
+            Taquillero taquillero = taquilleroRepository.findById(dto.getIdTaquillero())
                     .orElseThrow(() -> new RuntimeException("Taquillero no encontrado"));
             reserva.setTaquillero(taquillero);
         }

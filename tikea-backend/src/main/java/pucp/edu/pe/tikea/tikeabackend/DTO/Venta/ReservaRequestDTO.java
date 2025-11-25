@@ -15,8 +15,8 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class ReservaRequestDTO {
 
-    private  Integer clienteId;
-    private  Integer taquilleroId;
+    private  Integer idCliente;
+    private  Integer idTaquillero;
     private LocalDateTime fehcaHoraExpiracion;
     private TipoEstado estado;
 }

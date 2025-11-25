@@ -23,14 +23,10 @@ import java.time.LocalDateTime;
 public class SolicitudCambio extends Solicitud {
 
     @ManyToOne
-    @JoinColumn(name = "idCliente", nullable = false, insertable = false, updatable = false)
-    private Cliente cliente;
-
-    @ManyToOne
     @JoinColumn(name = "idReserva", nullable = false)
     private Reserva reserva;
 
-    @Column(name = "fecha", insertable = false, updatable = false)
+    @Column(name = "fecha", insertable = false)
     @Generated(GenerationTime.INSERT)
     @ColumnDefault("CURRENT_TIMESTAMP")
     private LocalDateTime fecha;

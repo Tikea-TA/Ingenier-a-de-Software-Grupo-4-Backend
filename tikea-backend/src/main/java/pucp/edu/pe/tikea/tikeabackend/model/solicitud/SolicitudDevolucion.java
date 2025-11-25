@@ -21,10 +21,6 @@ import pucp.edu.pe.tikea.tikeabackend.model.infraestructura.TicketEspecifico;
 public class SolicitudDevolucion extends Solicitud {
 
     @ManyToOne
-    @JoinColumn(name = "idCliente", nullable = false, insertable = false, updatable = false)
-    private Cliente cliente;
-
-    @ManyToOne
     @JoinColumn(name = "idTicketEspecifico", nullable = false)
     private TicketEspecifico ticketEspecifico;
 

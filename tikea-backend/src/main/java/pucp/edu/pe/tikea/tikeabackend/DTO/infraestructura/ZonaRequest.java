@@ -13,7 +13,7 @@ import pucp.edu.pe.tikea.tikeabackend.model.infraestructura.TipoZona;
 @AllArgsConstructor
 public class ZonaRequest {
 
-    private Integer establacimientoID;
+    private Integer idEstablecimiento;
     private String nombreZona;
     private int aforo;
     private TipoZona tipo;
