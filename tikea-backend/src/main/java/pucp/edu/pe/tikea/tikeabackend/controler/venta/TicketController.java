@@ -1,8 +1,8 @@
 package pucp.edu.pe.tikea.tikeabackend.controler.venta;
 
 import org.springframework.web.bind.annotation.*;
-import pucp.edu.pe.tikea.tikeabackend.DTO.Venta.TicketRequest;
-import pucp.edu.pe.tikea.tikeabackend.DTO.Venta.TicketResponse;
+import pucp.edu.pe.tikea.tikeabackend.DTO.venta.TicketRequest;
+import pucp.edu.pe.tikea.tikeabackend.DTO.venta.TicketResponse;
 import pucp.edu.pe.tikea.tikeabackend.model.infraestructura.TipoEstadoTicket;
 import pucp.edu.pe.tikea.tikeabackend.services.venta.TicketSpecificoService;
 

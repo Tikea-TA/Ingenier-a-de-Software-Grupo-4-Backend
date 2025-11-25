@@ -1,4 +1,4 @@
-package pucp.edu.pe.tikea.tikeabackend.DTO.Venta;
+package pucp.edu.pe.tikea.tikeabackend.DTO.venta;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
