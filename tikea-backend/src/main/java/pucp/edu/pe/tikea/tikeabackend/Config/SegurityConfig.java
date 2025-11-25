@@ -32,7 +32,23 @@ public class SegurityConfig {
                                 "/api/establecimientos",
                                 "/api/establecimientos/**",
                                 "/api/eventos",
-                                "/api/eventos/**"
+                                "/api/eventos/**",
+                                "/api/asientos",
+                                "/api/asientos/**",
+                                "/api/puntos-de-venta",
+                                "/api/puntos-de-venta/**",
+                                "/api/solicitudes-cambio",
+                                "/api/solicitudes-cambio/**",
+                                "/api/solicitudes-devolucion",
+                                "/api/solicitudes-devolucion/**",
+                                "/api/taquilleros",
+                                "/api/taquilleros/**",
+                                "/api/comprobantes",
+                                "/api/comprobantes/**",
+                                "/api/medios-pago",
+                                "/api/medios-pago/**",
+                                "/api/transacciones",
+                                "/api/transacciones/**"
                         ).permitAll()
                         .anyRequest().permitAll()
                 )
