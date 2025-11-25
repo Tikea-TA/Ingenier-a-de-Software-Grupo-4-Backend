@@ -25,7 +25,8 @@ public class ZonaService {
     }
 
     public ZonaResponse crearZona(ZonaRequest dto){
-        Establecimiento establecimiento = establecimientoRepository.findById(dto.getEstablacimientoID())
+
+        Establecimiento establecimiento = establecimientoRepository.findById(dto.getIdEstablecimiento())
                 .orElseThrow(() -> new RuntimeException("Establecimiento no encontrado"));
 
         Zona zona = new  Zona();
