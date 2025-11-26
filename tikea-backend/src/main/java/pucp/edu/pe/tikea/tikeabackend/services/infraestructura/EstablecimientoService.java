@@ -188,4 +188,24 @@ public class EstablecimientoService {
 
         return dto;
     }
+
+    public List<EstablecimientoResponse> obtenerEstablecimientosPorEstadoYGestor(TipoEstadoLocal estado, Integer idGestor) {
+        Gestor gestor = gestorRepository.findById(idGestor)
+                .orElseThrow(() -> new RuntimeException("Gestor no encontrado"));
+    
+        return establecimientoRepository.findByEstadoAndGestor(estado, gestor)
+                .stream()
+                .map(this::convertirAResponseDTO)
+                .collect(Collectors.toList());
+    }
+    
+    public byte[] obtenerDocumentacion(Integer idEstablecimiento) {
+        Establecimiento establecimiento = establecimientoRepository.findById(idEstablecimiento)
+                .orElseThrow(() -> new RuntimeException("Establecimiento no encontrado"));
+                
+        if (establecimiento.getDocumentacionAdjunta() == null) {
+            throw new RuntimeException("El establecimiento no tiene documentación adjunta");
+        }
+        return establecimiento.getDocumentacionAdjunta();
+    }
 }
