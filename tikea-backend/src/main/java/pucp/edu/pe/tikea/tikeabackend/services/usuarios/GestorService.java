@@ -1,5 +1,6 @@
 package pucp.edu.pe.tikea.tikeabackend.services.usuarios;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pucp.edu.pe.tikea.tikeabackend.DTO.usuarios.GestorRegistroRequest;
@@ -21,6 +22,7 @@ import java.util.stream.Collectors;
 public class GestorService {
 
     private final GestorRepository gestorRepository;
+    private final BCryptPasswordEncoder encoder;
 
     public GestorResponse registrarGestor(GestorRegistroRequest request) {
         // Validar que el correo no esté registrado
@@ -45,7 +47,7 @@ public class GestorService {
         gestor.setCorreo(request.getEmail());
         gestor.setTelefono(request.getTelefono());
         gestor.setNombreUser(request.getNombreUsuario());
-        gestor.setPassword(request.getPassword());
+        gestor.setPassword(encoder.encode(request.getPassword()));
         gestor.setDNI(request.getDni());
         gestor.setTipoArea(request.getTipoArea());
         gestor.setEstado(TipoEstado.ACTIVO);
@@ -107,7 +109,7 @@ public class GestorService {
 
         // Actualizar campos
         if (request.getPassword() != null) {
-            gestor.setPassword(request.getPassword());
+            gestor.setPassword(encoder.encode(request.getPassword()));
         }
         if (request.getNombreUsuario() != null) {
             gestor.setNombreUser(request.getNombreUsuario());
