@@ -1,5 +1,6 @@
 package pucp.edu.pe.tikea.tikeabackend.services.usuarios;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pucp.edu.pe.tikea.tikeabackend.DTO.usuarios.ProductorRegistroRequest;
@@ -28,6 +29,7 @@ public class ProductorService {
     private final ProductorRepository productorRepository;
     private final GestorRepository gestorRepository;
     private final EntityManager entityManager;
+    private final BCryptPasswordEncoder encoder;
 
     // =============== CREATE ===============
     public ProductorResponse registrarProductor(ProductorRegistroRequest productorRegistroRequest) {
@@ -52,7 +54,7 @@ public class ProductorService {
         productor.setCorreo(productorRegistroRequest.getEmail());
         productor.setTelefono(productorRegistroRequest.getTelefono());
         productor.setNombreUser(productorRegistroRequest.getNombreUsuario());
-        productor.setPassword(productorRegistroRequest.getPassword());
+        productor.setPassword(encoder.encode(productorRegistroRequest.getPassword()));
         productor.setDNI(productorRegistroRequest.getDNI());
         productor.setGestor(gestor);
         productor.setEstado(TipoEstado.ACTIVO);
