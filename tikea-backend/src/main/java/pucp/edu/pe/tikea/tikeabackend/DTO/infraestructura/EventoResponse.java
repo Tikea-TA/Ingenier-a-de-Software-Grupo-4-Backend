@@ -30,5 +30,4 @@ public class EventoResponse {
     private int aforoTotal;
     private Integer activo;
     private LocalDateTime fechaVerificacion;
-    private byte[] banner;
 }

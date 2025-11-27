@@ -214,7 +214,6 @@ public class EventoService {
         dto.setAforoTotal(evento.getAforoTotal());
         dto.setActivo(evento.getActivo());
         dto.setFechaVerificacion(evento.getFechaVerificacion());
-        dto.setBanner(evento.getBanner());
 
         // Convertir Establecimiento a EstablecimientoResponse
         if (evento.getEstablecimiento() != null) {
@@ -317,6 +316,11 @@ public class EventoService {
         Integer idProductor = requestDTO.getIdProductor();
         // Llama a la nueva consulta del repositorio
         return eventoRepository.generarReporteDetalladoPorFechaEvento(inicio, fin,idProductor);
+    }
+
+    public byte[] obtenerBannerPorId(Integer idEvento) {
+        // Ya no usamos findById, usamos la query específica
+        return eventoRepository.findBannerByIdNative(idEvento);
     }
 
 }

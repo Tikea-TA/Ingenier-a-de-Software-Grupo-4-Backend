@@ -70,8 +70,8 @@ public interface EventoRepository extends JpaRepository<Evento, Integer> {
     // Contar Eventos activos
     long countByActivo(Integer activo);
 
-
-
+    @Query(value = "SELECT banner FROM Evento WHERE idEvento = :id", nativeQuery = true)
+    byte[] findBannerByIdNative(@Param("id") Integer id);
 
 
     @Query("SELECT new pucp.edu.pe.tikea.tikeabackend.DTO.infraestructura.ReporteEventoDetalle( " +
