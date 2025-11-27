@@ -7,6 +7,8 @@ import pucp.edu.pe.tikea.tikeabackend.DTO.infraestructura.*;
 import pucp.edu.pe.tikea.tikeabackend.model.infraestructura.CategoriaEvento;
 import pucp.edu.pe.tikea.tikeabackend.model.infraestructura.EstadoEvento;
 import pucp.edu.pe.tikea.tikeabackend.services.infraestructura.EventoService;
+
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import java.time.LocalDate;
 import java.util.List;
@@ -102,6 +104,19 @@ public class EventoController {
         // Llama al nuevo método del servicio
         List<ReporteEventoDetalle> reporte = eventoService.generarReporteDetalladoPorFechaEvento(requestDTO);
         return ResponseEntity.ok(reporte);
+    }
+
+    @GetMapping("/{id}/banner")
+    public ResponseEntity<byte[]> obtenerBanner(@PathVariable Integer id) {
+        byte[] bannerBytes = eventoService.obtenerBannerPorId(id);
+
+        if (bannerBytes == null || bannerBytes.length == 0) {
+            return ResponseEntity.notFound().build(); // Devuelve 404 si no hay imagen
+        }
+
+        return ResponseEntity.ok()
+                .contentType(MediaType.IMAGE_JPEG) // El navegador suele ser inteligente, pero JPEG es buen default
+                .body(bannerBytes);
     }
 
 }
