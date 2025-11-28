@@ -76,8 +76,8 @@ public class ProductorController {
         byte[] documento = productorService.obtenerDocumentacion(idProductor);
 
         return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"sustento_productor_" + idProductor + ".pdf\"")
-                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_PDF_VALUE)
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"sustento_productor_" + idProductor + ".zip\"")
+                .header(HttpHeaders.CONTENT_TYPE, "application/zip")
                 .body(documento);
     }
 

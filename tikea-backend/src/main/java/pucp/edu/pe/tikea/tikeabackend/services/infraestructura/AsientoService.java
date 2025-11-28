@@ -34,7 +34,7 @@ public class AsientoService {
         asiento.setColumnaAsiento(request.getColumnaAsiento());
         asiento.setEstado(request.getEstado());
         asiento.setActivo(1);
-
+        asiento.setCosto(request.getCosto());
         asientoRepository.save(asiento);
 
         return convertirAResponse(asiento);

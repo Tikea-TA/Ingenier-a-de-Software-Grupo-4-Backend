@@ -134,8 +134,8 @@ public class EventoController {
         }
 
         return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"sustento_evento_" + idEvento + ".pdf\"") // Asumimos PDF/Zip
-                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_OCTET_STREAM_VALUE)
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"sustento_evento_" + idEvento + ".zip\"") // Asumimos PDF/Zip
+                .header(HttpHeaders.CONTENT_TYPE, "application/zip")
                 .body(documento);
     }
 

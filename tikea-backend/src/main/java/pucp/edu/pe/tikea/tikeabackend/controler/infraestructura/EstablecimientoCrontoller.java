@@ -97,8 +97,8 @@ public class EstablecimientoCrontoller {
 
         // Asumimos PDF por defecto, pero el navegador intentará detectarlo
         return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"documentacion_local_" + idEstablecimiento + ".pdf\"")
-                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_PDF_VALUE) 
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"documentacion_local_" + idEstablecimiento + ".zip\"")
+                .header(HttpHeaders.CONTENT_TYPE, "application/zip") 
                 .body(documento);
     }
 }
