@@ -6,12 +6,14 @@ import org.springframework.transaction.annotation.Transactional;
 import pucp.edu.pe.tikea.tikeabackend.DTO.usuarios.GestorRegistroRequest;
 import pucp.edu.pe.tikea.tikeabackend.DTO.usuarios.GestorModificacionRequest;
 import pucp.edu.pe.tikea.tikeabackend.DTO.usuarios.GestorResponse;
+import pucp.edu.pe.tikea.tikeabackend.DTO.usuarios.cliente.LoginRequest;
 import pucp.edu.pe.tikea.tikeabackend.model.usuarios.Gestor;
 import pucp.edu.pe.tikea.tikeabackend.model.usuarios.TipoArea;
 import pucp.edu.pe.tikea.tikeabackend.model.usuarios.TipoEstado;
 import lombok.RequiredArgsConstructor;
 import pucp.edu.pe.tikea.tikeabackend.repository.usuarios.GestorRepository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -132,6 +134,28 @@ public class GestorService {
                 .orElseThrow(() -> new RuntimeException("Gestor no encontrado con ID: " + idGestor));
 
         gestorRepository.delete(gestor);
+    }
+
+    public GestorResponse login(LoginRequest dto) {
+        // 1. Buscar por correo
+        Gestor gestor = gestorRepository.findByCorreoIgnoreCase(dto.getCorreo())
+                .orElseThrow(() -> new IllegalArgumentException("Credenciales inválidas (Usuario no encontrado)"));
+
+        // 2. Verificar contraseña
+        if (!encoder.matches(dto.getPassword(), gestor.getPassword())) {
+            throw new IllegalArgumentException("Password incorrecto");
+        }
+        
+        // 3. Validar estado
+        if (gestor.getEstado() != TipoEstado.ACTIVO) {
+             throw new IllegalArgumentException("El usuario no está activo");
+        }
+
+        // 4. Actualizar último acceso
+        gestor.setFechaUltimoAcceso(LocalDateTime.now());
+
+        // 5. Guardar y retornar DTO
+        return convertirAResponseDTO(gestorRepository.save(gestor));
     }
 
     private GestorResponse convertirAResponseDTO(Gestor gestor) {

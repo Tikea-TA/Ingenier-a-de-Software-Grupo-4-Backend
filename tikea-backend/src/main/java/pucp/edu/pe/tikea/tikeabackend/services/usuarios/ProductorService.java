@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import pucp.edu.pe.tikea.tikeabackend.DTO.usuarios.ProductorRegistroRequest;
 import pucp.edu.pe.tikea.tikeabackend.DTO.usuarios.ProductorModificacionRequest;
 import pucp.edu.pe.tikea.tikeabackend.DTO.usuarios.ProductorResponse;
+import pucp.edu.pe.tikea.tikeabackend.DTO.usuarios.cliente.LoginRequest;
 import pucp.edu.pe.tikea.tikeabackend.DTO.usuarios.GestorResponse;
 import pucp.edu.pe.tikea.tikeabackend.model.usuarios.Productor;
 import pucp.edu.pe.tikea.tikeabackend.model.usuarios.Gestor;
@@ -244,5 +245,27 @@ public class ProductorService {
         }
 
         return dto;
+    }
+
+    public ProductorResponse login(LoginRequest dto) {
+        // 1. Buscar por correo
+        Productor productor = productorRepository.findByCorreoIgnoreCase(dto.getCorreo())
+                .orElseThrow(() -> new IllegalArgumentException("Credenciales inválidas (Usuario no encontrado)"));
+
+        // 2. Verificar contraseña encriptada
+        if (!encoder.matches(dto.getPassword(), productor.getPassword())) {
+            throw new IllegalArgumentException("Password incorrecto");
+        }
+
+        // 3. Validar estado (Opcional, pero recomendado)
+        if (productor.getEstado() != TipoEstado.ACTIVO) {
+             throw new IllegalArgumentException("El usuario no está activo");
+        }
+
+        // 4. Actualizar último acceso
+        productor.setFechaUltimoAcceso(LocalDateTime.now());
+        
+        // 5. Guardar y retornar DTO
+        return convertirAResponseDTO(productorRepository.save(productor));
     }
 }

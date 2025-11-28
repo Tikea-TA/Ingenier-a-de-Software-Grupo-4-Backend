@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import pucp.edu.pe.tikea.tikeabackend.DTO.usuarios.ProductorRegistroRequest;
 import pucp.edu.pe.tikea.tikeabackend.DTO.usuarios.ProductorModificacionRequest;
 import pucp.edu.pe.tikea.tikeabackend.DTO.usuarios.ProductorResponse;
+import pucp.edu.pe.tikea.tikeabackend.DTO.usuarios.cliente.LoginRequest;
 import pucp.edu.pe.tikea.tikeabackend.model.usuarios.TipoEstadoProductor;
 import pucp.edu.pe.tikea.tikeabackend.services.usuarios.ProductorService;
 
@@ -86,5 +87,10 @@ public class ProductorController {
             @PathVariable Integer idProductor, 
             @RequestParam TipoEstadoProductor nuevoEstado) {
         return productorService.validarProductor(idProductor, nuevoEstado);
+    }
+
+    @PostMapping("/login")
+    public ProductorResponse login(@Valid @RequestBody LoginRequest dto) {
+        return productorService.login(dto);
     }
 }
