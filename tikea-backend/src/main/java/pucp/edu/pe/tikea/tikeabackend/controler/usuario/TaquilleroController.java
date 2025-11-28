@@ -24,8 +24,9 @@ public class TaquilleroController {
     }
 
     //          ACTUALIZAR
-    @PutMapping
-    public ResponseEntity<Taquillero> actualizar(@RequestBody Taquillero taquillero) {
+    @PutMapping("/{id}")
+    public ResponseEntity<Taquillero> actualizar(@PathVariable Integer id,@RequestBody Taquillero taquillero) {
+        taquillero.setIdUsuario(id);
         return ResponseEntity.ok(servicio.actualizar(taquillero));
     }
 

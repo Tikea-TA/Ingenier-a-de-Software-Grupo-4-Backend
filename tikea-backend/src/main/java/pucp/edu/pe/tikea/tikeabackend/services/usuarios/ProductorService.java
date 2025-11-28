@@ -158,7 +158,7 @@ public class ProductorService {
 
         // Actualizar campos
         if (request.getPassword() != null) {
-            productor.setPassword(request.getPassword()); // En producción, encriptar
+            productor.setPassword(encoder.encode(request.getPassword())); // En producción, encriptar
         }
         if (request.getNombreUsuario() != null) {
             productor.setNombreUser(request.getNombreUsuario());
