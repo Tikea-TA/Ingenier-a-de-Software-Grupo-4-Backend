@@ -51,59 +51,53 @@ public class TaquilleroService {
 
     @Transactional
     public Taquillero actualizar(Taquillero taquillero) {
-        Taquillero taquilleroExistente = repository.findById(taquillero.getIdUsuario())
+        Taquillero taquilleroDb = repository.findById(taquillero.getIdUsuario())
                 .orElseThrow(() -> new RuntimeException("Taquillero no encontrado con ID: " + taquillero.getIdUsuario()));
 
-        // Mantener campos obligatorios del existente si no se envían
-        if (taquillero.getEstado() == null) {
-            taquillero.setEstado(taquilleroExistente.getEstado());
+        if (taquillero.getNombre() != null) taquilleroDb.setNombre(taquillero.getNombre());
+        if (taquillero.getApellidos() != null) taquilleroDb.setApellidos(taquillero.getApellidos());
+        if (taquillero.getCorreo() != null) taquilleroDb.setCorreo(taquillero.getCorreo());
+        if (taquillero.getNombreUser() != null) taquilleroDb.setNombreUser(taquillero.getNombreUser());
+        if (taquillero.getDNI() != null) taquilleroDb.setDNI(taquillero.getDNI());
+
+        if (taquillero.getTelefono() != null) {
+            taquilleroDb.setTelefono(taquillero.getTelefono());
         }
 
-        if (taquillero.getFechaRegistro() == null) {
-            taquillero.setFechaRegistro(taquilleroExistente.getFechaRegistro());
+        if (taquillero.getEstado() != null) taquilleroDb.setEstado(taquillero.getEstado());
+        if (taquillero.getActivo() != null) taquilleroDb.setActivo(taquillero.getActivo());
+
+        if (taquillero.getPuntoDeVenta() != null) {
+            taquilleroDb.setPuntoDeVenta(taquillero.getPuntoDeVenta());
         }
 
-        if (taquillero.getNombre() == null) {
-            taquillero.setNombre(taquilleroExistente.getNombre());
+        if (taquillero.getRol() != null) {
+            taquilleroDb.setRol(taquillero.getRol());
         }
 
-        if (taquillero.getApellidos() == null) {
-            taquillero.setApellidos(taquilleroExistente.getApellidos());
+        if (taquillero.getLocalesAsignados() > 0) {
+            taquilleroDb.setLocalesAsignados(taquillero.getLocalesAsignados());
         }
 
-        if (taquillero.getCorreo() == null) {
-            taquillero.setCorreo(taquilleroExistente.getCorreo());
+        // Fechas de asignación
+        if (taquillero.getFechaInicioAsignacion() != null) {
+            taquilleroDb.setFechaInicioAsignacion(taquillero.getFechaInicioAsignacion());
+        }
+        if (taquillero.getFechaFinAsignacion() != null) {
+            taquilleroDb.setFechaFinAsignacion(taquillero.getFechaFinAsignacion());
         }
 
-        if (taquillero.getNombreUser() == null) {
-            taquillero.setNombreUser(taquilleroExistente.getNombreUser());
-        }
-
-        if (taquillero.getDNI() == null) {
-            taquillero.setDNI(taquilleroExistente.getDNI());
-        }
-
-        if (taquillero.getActivo() == null) {
-            taquillero.setActivo(taquilleroExistente.getActivo());
-        }
-
-        // Si se está actualizando la contraseña, encriptarla
         if (taquillero.getPassword() != null && !taquillero.getPassword().isEmpty()) {
-            // Verificar si ya está encriptada
             if (!taquillero.getPassword().startsWith("$2a$") &&
                     !taquillero.getPassword().startsWith("$2b$")) {
-                taquillero.setPassword(encoder.encode(taquillero.getPassword()));
-                taquillero.setRequiereCambioPassword(false);
+                taquilleroDb.setPassword(encoder.encode(taquillero.getPassword()));
+                taquilleroDb.setRequiereCambioPassword(false);
             }
-        } else {
-            // Si no se envía contraseña, mantener la existente
-            taquillero.setPassword(taquilleroExistente.getPassword());
         }
 
-        // Actualizar fecha de modificación
-        taquillero.setFechaUltimaModificacion(LocalDateTime.now());
+        taquilleroDb.setFechaUltimaModificacion(LocalDateTime.now());
 
-        return repository.save(taquillero);
+        return repository.save(taquilleroDb);
     }
 
     //                   ELIMINACIÓN LÓGICA
