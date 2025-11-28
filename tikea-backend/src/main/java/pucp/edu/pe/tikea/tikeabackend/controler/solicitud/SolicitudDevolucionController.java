@@ -1,11 +1,11 @@
 package pucp.edu.pe.tikea.tikeabackend.controler.solicitud;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import pucp.edu.pe.tikea.tikeabackend.model.solicitud.SolicitudDevolucion;
-import pucp.edu.pe.tikea.tikeabackend.model.usuarios.Cliente;
-import pucp.edu.pe.tikea.tikeabackend.model.infraestructura.TicketEspecifico;
+import pucp.edu.pe.tikea.tikeabackend.DTO.solicitud.SolcitudDevolucionRequest;
+import pucp.edu.pe.tikea.tikeabackend.DTO.solicitud.SolicitudDevolucionResponse;
 import pucp.edu.pe.tikea.tikeabackend.services.solicitud.SolicitudDevolucionService;
 
 import java.util.List;
@@ -18,10 +18,19 @@ public class SolicitudDevolucionController {
 
     private final SolicitudDevolucionService servicio;
 
-    //           REGISTRAR
+    //           REGISTRAR (Usa DTO Request para entrada y DTO Response para salida)
     @PostMapping
-    public ResponseEntity<SolicitudDevolucion> registrar(@RequestBody SolicitudDevolucion solicitud) {
-        return ResponseEntity.ok(servicio.registrar(solicitud));
+    public ResponseEntity<SolicitudDevolucionResponse> registrar(@RequestBody SolcitudDevolucionRequest solicitud) {
+        SolicitudDevolucionResponse response = servicio.registrar(solicitud);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    }
+
+    //           MODIFICAR (Implementado para permitir actualizaciones parciales con DTO Request)
+    @PutMapping("/{id}")
+    public ResponseEntity<SolicitudDevolucionResponse> modificar(
+            @PathVariable Integer id,
+            @RequestBody SolcitudDevolucionRequest nuevosDatos) {
+        return ResponseEntity.ok(servicio.modificar(id, nuevosDatos));
     }
 
     //       ELIMINACIÓN LÓGICA
@@ -31,64 +40,58 @@ public class SolicitudDevolucionController {
         return eliminado ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
     }
 
-    //           BUSCAR POR ID
+    //           BUSCAR POR ID (Retorna DTO Response)
     @GetMapping("/{id}")
-    public ResponseEntity<SolicitudDevolucion> obtenerPorId(@PathVariable Integer id) {
-        Optional<SolicitudDevolucion> solicitud = servicio.obtenerPorId(id);
+    public ResponseEntity<SolicitudDevolucionResponse> obtenerPorId(@PathVariable Integer id) {
+        Optional<SolicitudDevolucionResponse> solicitud = servicio.obtenerPorId(id);
         return solicitud.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    //        LISTAR TODOS
+    //        LISTAR TODOS (Retorna DTO Response List)
     @GetMapping
-    public ResponseEntity<List<SolicitudDevolucion>> listarTodos() {
+    public ResponseEntity<List<SolicitudDevolucionResponse>> listarTodos() {
         return ResponseEntity.ok(servicio.listarTodos());
     }
 
-    //       LISTAR SOLO ACTIVOS
+    //       LISTAR SOLO ACTIVOS (Retorna DTO Response List)
     @GetMapping("/activos")
-    public ResponseEntity<List<SolicitudDevolucion>> listarActivos() {
+    public ResponseEntity<List<SolicitudDevolucionResponse>> listarActivos() {
         return ResponseEntity.ok(servicio.listarActivos());
     }
 
-    //       BUSCAR POR CLIENTE
+    //       BUSCAR POR CLIENTE (Ahora recibe Integer y retorna DTO Response List)
     @GetMapping("/cliente/{idCliente}")
-    public ResponseEntity<List<SolicitudDevolucion>> buscarPorCliente(@PathVariable Integer idCliente) {
-        Cliente cliente = new Cliente();
-        cliente.setIdUsuario(idCliente);
-        return ResponseEntity.ok(servicio.buscarPorCliente(cliente));
+    public ResponseEntity<List<SolicitudDevolucionResponse>> buscarPorCliente(@PathVariable Integer idCliente) {
+        return ResponseEntity.ok(servicio.buscarPorCliente(idCliente));
     }
 
+    //       BUSCAR ACTIVOS POR CLIENTE (Ahora recibe Integer y retorna DTO Response List)
     @GetMapping("/cliente/{idCliente}/activos")
-    public ResponseEntity<List<SolicitudDevolucion>> buscarActivosPorCliente(@PathVariable Integer idCliente) {
-        Cliente cliente = new Cliente();
-        cliente.setIdUsuario(idCliente);
-        return ResponseEntity.ok(servicio.buscarActivosPorCliente(cliente));
+    public ResponseEntity<List<SolicitudDevolucionResponse>> buscarActivosPorCliente(@PathVariable Integer idCliente) {
+        return ResponseEntity.ok(servicio.buscarActivosPorCliente(idCliente));
     }
 
-    //       BUSCAR POR TICKET
+    //       BUSCAR POR TICKET (Ahora recibe Integer y retorna DTO Response List)
     @GetMapping("/ticket/{idTicket}")
-    public ResponseEntity<List<SolicitudDevolucion>> buscarPorTicket(@PathVariable Integer idTicket) {
-        TicketEspecifico ticket = new TicketEspecifico();
-        ticket.setIdTicketEspecifico(idTicket);
-        return ResponseEntity.ok(servicio.buscarPorTicket(ticket));
+    public ResponseEntity<List<SolicitudDevolucionResponse>> buscarPorTicket(@PathVariable Integer idTicket) {
+        return ResponseEntity.ok(servicio.buscarPorTicket(idTicket));
     }
 
+    //       BUSCAR ACTIVOS POR TICKET (Ahora recibe Integer y retorna DTO Response List)
     @GetMapping("/ticket/{idTicket}/activos")
-    public ResponseEntity<List<SolicitudDevolucion>> buscarActivosPorTicket(@PathVariable Integer idTicket) {
-        TicketEspecifico ticket = new TicketEspecifico();
-        ticket.setIdTicketEspecifico(idTicket);
-        return ResponseEntity.ok(servicio.buscarActivosPorTicket(ticket));
+    public ResponseEntity<List<SolicitudDevolucionResponse>> buscarActivosPorTicket(@PathVariable Integer idTicket) {
+        return ResponseEntity.ok(servicio.buscarActivosPorTicket(idTicket));
     }
 
-    //       BUSCAR POR POLÍTICA
+    //       BUSCAR POR POLÍTICA (Retorna DTO Response List)
     @GetMapping("/politica/{aplicada}")
-    public ResponseEntity<List<SolicitudDevolucion>> buscarPorPolitica(@PathVariable Boolean aplicada) {
+    public ResponseEntity<List<SolicitudDevolucionResponse>> buscarPorPolitica(@PathVariable Boolean aplicada) {
         return ResponseEntity.ok(servicio.buscarPorPolitica(aplicada));
     }
 
-    //       BUSCAR POR REINCORPORACIÓN
+    //       BUSCAR POR REINCORPORACIÓN (Retorna DTO Response List)
     @GetMapping("/reincorporacion/{reincorporado}")
-    public ResponseEntity<List<SolicitudDevolucion>> buscarPorReincorporacion(@PathVariable Boolean reincorporado) {
+    public ResponseEntity<List<SolicitudDevolucionResponse>> buscarPorReincorporacion(@PathVariable Boolean reincorporado) {
         return ResponseEntity.ok(servicio.buscarPorReincorporacion(reincorporado));
     }
 }
