@@ -1,12 +1,12 @@
 package pucp.edu.pe.tikea.tikeabackend.controler.solicitud;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import pucp.edu.pe.tikea.tikeabackend.model.solicitud.SolicitudCambio;
+import pucp.edu.pe.tikea.tikeabackend.DTO.solicitud.SolicitudCambioRequest;
+import pucp.edu.pe.tikea.tikeabackend.DTO.solicitud.SolicitudCambioResponse;
 import pucp.edu.pe.tikea.tikeabackend.model.solicitud.TipoOperacionCambio;
-import pucp.edu.pe.tikea.tikeabackend.model.usuarios.Cliente;
-import pucp.edu.pe.tikea.tikeabackend.model.venta.Reserva;
 import pucp.edu.pe.tikea.tikeabackend.services.solicitud.SolicitudCambioService;
 
 import java.time.LocalDateTime;
@@ -19,17 +19,19 @@ public class SolicitudCambioController {
 
     private final SolicitudCambioService solicitudCambioService;
 
-    //           REGISTRAR
+    //           REGISTRAR (Usa DTO Request para entrada y DTO Response para salida)
     @PostMapping
-    public ResponseEntity<SolicitudCambio> registrar(@RequestBody SolicitudCambio solicitud) {
-        return ResponseEntity.ok(solicitudCambioService.registrar(solicitud));
+    public ResponseEntity<SolicitudCambioResponse> registrar(@RequestBody SolicitudCambioRequest request) {
+        SolicitudCambioResponse response = solicitudCambioService.registrar(request);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
-    //           MODIFICAR
+    //           MODIFICAR (Usa DTO Request para entrada y DTO Response para salida)
     @PutMapping("/{id}")
-    public ResponseEntity<SolicitudCambio> modificar(
+    public ResponseEntity<SolicitudCambioResponse> modificar(
             @PathVariable Integer id,
-            @RequestBody SolicitudCambio nuevosDatos) {
+            @RequestBody SolicitudCambioRequest nuevosDatos) {
+        // El servicio maneja la actualización parcial, ignorando campos nulos del request.
         return ResponseEntity.ok(solicitudCambioService.modificar(id, nuevosDatos));
     }
 
@@ -47,70 +49,65 @@ public class SolicitudCambioController {
         return ResponseEntity.noContent().build();
     }
 
-    //           BUSCAR POR ID
+    //           BUSCAR POR ID (Retorna DTO Response)
     @GetMapping("/{id}")
-    public ResponseEntity<SolicitudCambio> buscarPorId(@PathVariable Integer id) {
+    public ResponseEntity<SolicitudCambioResponse> buscarPorId(@PathVariable Integer id) {
         return ResponseEntity.ok(solicitudCambioService.buscarPorId(id));
     }
 
-    //        LISTAR TODOS
+    //        LISTAR TODOS (Retorna DTO Response List)
     @GetMapping
-    public ResponseEntity<List<SolicitudCambio>> listarTodos() {
+    public ResponseEntity<List<SolicitudCambioResponse>> listarTodos() {
         return ResponseEntity.ok(solicitudCambioService.listarTodos());
     }
 
-    //       LISTAR SOLO ACTIVOS
+    //       LISTAR SOLO ACTIVOS (Retorna DTO Response List)
     @GetMapping("/activos")
-    public ResponseEntity<List<SolicitudCambio>> listarActivos() {
+    public ResponseEntity<List<SolicitudCambioResponse>> listarActivos() {
         return ResponseEntity.ok(solicitudCambioService.listarActivos());
     }
 
-    //       BUSCAR POR CLIENTE
+    //       BUSCAR POR CLIENTE (Ahora recibe Integer y retorna DTO Response List)
     @GetMapping("/cliente/{idCliente}")
-    public ResponseEntity<List<SolicitudCambio>> buscarPorCliente(@PathVariable Integer idCliente) {
-        Cliente cliente = new Cliente();
-        cliente.setIdUsuario(idCliente);
-        return ResponseEntity.ok(solicitudCambioService.buscarPorCliente(cliente));
+    public ResponseEntity<List<SolicitudCambioResponse>> buscarPorCliente(@PathVariable Integer idCliente) {
+        return ResponseEntity.ok(solicitudCambioService.buscarPorCliente(idCliente));
     }
 
+    //       BUSCAR ACTIVOS POR CLIENTE (Ahora recibe Integer y retorna DTO Response List)
     @GetMapping("/cliente/{idCliente}/activos")
-    public ResponseEntity<List<SolicitudCambio>> buscarActivosPorCliente(@PathVariable Integer idCliente) {
-        Cliente cliente = new Cliente();
-        cliente.setIdUsuario(idCliente);
-        return ResponseEntity.ok(solicitudCambioService.buscarActivosPorCliente(cliente));
+    public ResponseEntity<List<SolicitudCambioResponse>> buscarActivosPorCliente(@PathVariable Integer idCliente) {
+        return ResponseEntity.ok(solicitudCambioService.buscarActivosPorCliente(idCliente));
     }
 
-    //       BUSCAR POR RESERVA
+    //       BUSCAR POR RESERVA (Ahora recibe Integer y retorna DTO Response List)
     @GetMapping("/reserva/{idReserva}")
-    public ResponseEntity<List<SolicitudCambio>> buscarPorReserva(@PathVariable Integer idReserva) {
-        Reserva reserva = new Reserva();
-        reserva.setIdReserva(idReserva);
-        return ResponseEntity.ok(solicitudCambioService.buscarPorReserva(reserva));
+    public ResponseEntity<List<SolicitudCambioResponse>> buscarPorReserva(@PathVariable Integer idReserva) {
+        return ResponseEntity.ok(solicitudCambioService.buscarPorReserva(idReserva));
     }
 
-    //       BUSCAR POR TIPO DE OPERACIÓN
+    //       BUSCAR POR TIPO DE OPERACIÓN (Retorna DTO Response List)
     @GetMapping("/tipo/{tipoOperacion}")
-    public ResponseEntity<List<SolicitudCambio>> buscarPorTipo(@PathVariable TipoOperacionCambio tipoOperacion) {
+    public ResponseEntity<List<SolicitudCambioResponse>> buscarPorTipo(@PathVariable TipoOperacionCambio tipoOperacion) {
         return ResponseEntity.ok(solicitudCambioService.buscarPorTipo(tipoOperacion));
     }
 
-    //       BUSCAR POR DISPONIBILIDAD VALIDADA
+    //       BUSCAR POR DISPONIBILIDAD VALIDADA (Retorna DTO Response List)
     @GetMapping("/disponibilidad/{validada}")
-    public ResponseEntity<List<SolicitudCambio>> buscarPorDisponibilidad(@PathVariable Boolean validada) {
+    public ResponseEntity<List<SolicitudCambioResponse>> buscarPorDisponibilidad(@PathVariable Boolean validada) {
         return ResponseEntity.ok(solicitudCambioService.buscarPorDisponibilidad(validada));
     }
 
-    //       BUSCAR POR RANGO DE FECHAS
+    //       BUSCAR POR RANGO DE FECHAS (Retorna DTO Response List)
     @GetMapping("/rango-fechas")
-    public ResponseEntity<List<SolicitudCambio>> buscarPorRangoFechas(
+    public ResponseEntity<List<SolicitudCambioResponse>> buscarPorRangoFechas(
             @RequestParam LocalDateTime inicio,
             @RequestParam LocalDateTime fin) {
         return ResponseEntity.ok(solicitudCambioService.buscarPorRangoFechas(inicio, fin));
     }
 
-    //       BUSCAR ACTIVOS POR RANGO DE FECHAS
+    //       BUSCAR ACTIVOS POR RANGO DE FECHAS (Retorna DTO Response List)
     @GetMapping("/rango-fechas/activos")
-    public ResponseEntity<List<SolicitudCambio>> buscarActivosPorFechas(
+    public ResponseEntity<List<SolicitudCambioResponse>> buscarActivosPorFechas(
             @RequestParam LocalDateTime inicio,
             @RequestParam LocalDateTime fin) {
         return ResponseEntity.ok(solicitudCambioService.buscarActivosPorFechas(inicio, fin));
