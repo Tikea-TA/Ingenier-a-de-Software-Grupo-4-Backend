@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import pucp.edu.pe.tikea.tikeabackend.DTO.usuarios.GestorRegistroRequest;
 import pucp.edu.pe.tikea.tikeabackend.DTO.usuarios.GestorModificacionRequest;
 import pucp.edu.pe.tikea.tikeabackend.DTO.usuarios.GestorResponse;
+import pucp.edu.pe.tikea.tikeabackend.DTO.usuarios.cliente.LoginRequest;
 import pucp.edu.pe.tikea.tikeabackend.model.usuarios.TipoArea;
 import pucp.edu.pe.tikea.tikeabackend.services.usuarios.GestorService;
 
@@ -58,5 +59,10 @@ public class GestorController {
     public void eliminarGestor(
             @PathVariable Integer idGestor) {
         gestorService.eliminarGestor(idGestor);
+    }
+
+    @PostMapping("/login")
+    public GestorResponse login(@Valid @RequestBody LoginRequest dto) {
+        return gestorService.login(dto);
     }
 }

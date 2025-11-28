@@ -1,5 +1,7 @@
 package pucp.edu.pe.tikea.tikeabackend.DTO.usuarios;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -34,6 +36,7 @@ public class ProductorRegistroRequest {
     @NotBlank(message = "La contraseña es requerida")
     private String password;
 
+    @JsonProperty("DNI")
     @NotBlank(message = "El DNI es requerido")
     private String DNI;
 
@@ -44,6 +47,7 @@ public class ProductorRegistroRequest {
     @NotBlank(message = "La razón social es requerida")
     private String razonSocial;
 
+    @JsonProperty("RUC")
     @NotBlank(message = "El RUC es requerido")
     private String RUC;
 
