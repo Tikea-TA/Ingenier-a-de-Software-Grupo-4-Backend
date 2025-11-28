@@ -1,35 +1,25 @@
 package pucp.edu.pe.tikea.tikeabackend.DTO.usuarios;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import pucp.edu.pe.tikea.tikeabackend.model.usuarios.TipoEstado;
 
 import java.time.LocalDateTime;
 
-@Builder
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class TaquilleroResponse {
-
     private Integer idTaquillero;
-
-    // Datos heredados de Usuario
     private String nombre;
     private String apellidos;
-    private String email;
+    private String correo;
     private String telefono;
     private String nombreUsuario;
     private String DNI;
+    private TipoEstado estado;
 
-    // Datos propios de Taquillero
-    private Integer idPuntoDeVenta;
-
+    // Campos específicos de Taquillero
     private String rol;
-
+    private Integer puntoDeVentaId;
     private Integer localesAsignados;
-
     private LocalDateTime fechaInicioAsignacion;
     private LocalDateTime fechaFinAsignacion;
 }

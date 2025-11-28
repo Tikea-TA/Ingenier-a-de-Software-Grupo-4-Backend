@@ -8,41 +8,37 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Builder
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class TaquilleroRequest {
 
-    @NotBlank(message = "El nombre es requerido")
+    @NotBlank(message = "El nombre es obligatorio")
     private String nombre;
 
-    @NotBlank(message = "El apellido es requerido")
+    @NotBlank(message = "Los apellidos son obligatorios")
     private String apellidos;
 
-    @Email(message = "El email debe ser válido")
-    @NotBlank(message = "El email es requerido")
-    private String email;
+    @Email(message = "El correo debe ser válido")
+    @NotBlank(message = "El correo es obligatorio")
+    private String correo;
 
-    @NotBlank(message = "El teléfono es requerido")
     private String telefono;
 
-    @NotBlank(message = "El nombre de usuario es requerido")
+    @NotBlank(message = "El nombre de usuario es obligatorio")
     private String nombreUsuario;
 
-    @NotBlank(message = "La contraseña es requerida")
+    private String dni;
+
     private String password;
 
-    @NotBlank(message = "El DNI es requerido")
-    private String DNI;
-
-    // Campos propios de Taquillero
-    @NotNull(message = "El ID del punto de venta es requerido")
-    private Integer idPuntoDeVenta;
-
-    @NotBlank(message = "El rol es requerido")
+    // Campos específicos de Taquillero
     private String rol;
-
-    @NotNull(message = "El número de locales asignados es requerido")
+    private Integer puntoDeVentaId;
     private Integer localesAsignados;
+    private LocalDateTime fechaInicioAsignacion;
+    private LocalDateTime fechaFinAsignacion;
 }
