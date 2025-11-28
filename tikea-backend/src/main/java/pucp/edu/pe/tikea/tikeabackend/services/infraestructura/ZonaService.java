@@ -29,11 +29,11 @@ public class ZonaService {
         Establecimiento establecimiento = establecimientoRepository.findById(dto.getIdEstablecimiento())
                 .orElseThrow(() -> new RuntimeException("Establecimiento no encontrado"));
 
-        Zona zona = new  Zona();
+        Zona zona = new Zona();
 
         zona.setEstablecimiento(establecimiento);
-        zona.setNombreZona( dto.getNombreZona());
-        zona.setAforo( dto.getAforo());
+        zona.setNombreZona(dto.getNombreZona());
+        zona.setAforo(dto.getAforo());
         zona.setTipo(dto.getTipo());
         zona.setDistribucionAsientos(dto.getDistribucionAsientos());
         zona.setRestriccionesSeguridad(dto.getRestriccionesSeguridad());

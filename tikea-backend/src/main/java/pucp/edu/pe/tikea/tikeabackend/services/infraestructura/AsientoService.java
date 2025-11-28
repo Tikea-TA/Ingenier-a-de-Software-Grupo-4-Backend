@@ -45,14 +45,15 @@ public class AsientoService {
 
         Asiento asiento = asientoRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Asiento no encontrado"));
-
-        Zona zona = zonaRepository.findById(request.getIdZona())
+                
+        if(request.getIdZona()!=null){
+            Zona zona = zonaRepository.findById(request.getIdZona())
                 .orElseThrow(() -> new RuntimeException("Zona no encontrada"));
-
-        asiento.setZona(zona);
-        asiento.setFilaAsiento(request.getFilaAsiento());
-        asiento.setColumnaAsiento(request.getColumnaAsiento());
-        asiento.setEstado(request.getEstado());
+            asiento.setZona(zona);
+        }
+        if(request.getFilaAsiento()!=null) asiento.setFilaAsiento(request.getFilaAsiento());
+        if(request.getColumnaAsiento()!=null) asiento.setColumnaAsiento(request.getColumnaAsiento());
+        if(request.getEstado()!=null) asiento.setEstado(request.getEstado());
 
         asientoRepository.save(asiento);
 
